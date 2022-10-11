@@ -14,26 +14,18 @@ if(!isset($_SESSION['username'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Home</title>
-    <link rel="stylesheet" href="style.css">
+        <title>Student: Course Grades</title>
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h1>Student Home</h1>
-
+    <h3>Student</h3>
+    <h1>Course Grades</h1>
     <hr>
-    <a href="./Student/studentRecord.php" class = 'sub'>Student Record</a>
-    <a href="./Student/courseGrades.php" class = 'sub'>Course Grades</a>
-    <a href="./Student/courseRegistration.php" class = 'sub'>Course Registration</a>
-    <a href="./Student/majorRequirements.php" class = 'sub'>Major Requirements</a>
-    <a href="./Student/facultyCourse.php" class = 'sub'>Faculty Course Information</a>
-    <hr>
-
-    <h2>Welcome <?php echo $_SESSION['username'];?></h2>
-
+    
 
     
+
     <form action="logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
