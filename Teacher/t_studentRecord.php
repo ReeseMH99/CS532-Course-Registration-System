@@ -14,30 +14,26 @@ if(!isset($_SESSION['username'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Home</title>
+    <title>Teacher: Student Record</title>
     <link rel="stylesheet" href="style.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h1>Student Home</h1>
-
+    <h3>Teacher</h3>
+    <h1>Student Record</h1>
     <hr>
     <div style="text-align:center">
-        <a href="./Student/s_studentRecord.php" class = 'sub'>Student Record</a>
-        <a href="./Student/s_courseGrades.php" class = 'sub'>Course Grades</a>
-        <a href="./Student/s_courseRegistration.php" class = 'sub'>Course Registration</a>
-        <a href="./Student/s_majorRequirements.php" class = 'sub'>Major Requirements</a>
-        <a href="./Student/s_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
+        <a href="../teacherHome.php" class = 'sub'>Home</a>
+        <a href="./t_courseGrades.php" class = 'sub'>Course Grades</a>
+        <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a>
+        <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
     </hr>
-
     <hr>
-    </hr>
-    <h2>Welcome <?php echo $_SESSION['username'];?></h2>
 
-
-    <form action="logout.php" method="post">
+    <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
 
