@@ -37,22 +37,27 @@ $select = "SELECT * FROM Admins WHERE adminID = '$userID';";
 $result = mysqli_query($connection, $select);	
 $countAdmin = mysqli_num_rows($result);
 
+$select = "SELECT firstName FROM Users WHERE userID = '$userID';";
+$result = mysqli_query($connection, $select);	
+$array = mysqli_fetch_array($result);
+$firstName = $array[0];
+
 
 
 // check if user was found in query
 if($countStudent == 1){
 	$countStudent = 0;
-	$_SESSION['username'] = $email;      // storing username into session
+	$_SESSION['username'] = $firstName;      // storing username into session
 	header('location:studentHome.php');   // take user to homepage 
 
 }elseif($countTeacher == 1){
 	$countTeacher = 0;
-	$_SESSION['username'] = $email;
+	$_SESSION['username'] = $firstName;
 	header('location:teacherHome.php');
 
 }elseif($countAdmin == 1){
 	$countAdmin = 0;
-	$_SESSION['username'] = $email;
+	$_SESSION['username'] = $firstName;
 	header('location:adminHome.php');
 
 }else{

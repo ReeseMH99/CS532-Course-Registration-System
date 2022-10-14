@@ -33,6 +33,10 @@ if(!isset($_SESSION['username'])){
     </hr>
     <hr>
 
+    <div class = 'scroll_box'>
+    Once there's enough text in this box, the box will grow scroll bars
+    </div>
+
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
