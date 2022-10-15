@@ -3,7 +3,7 @@ session_start();
 // studentHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
@@ -24,6 +24,7 @@ if(!isset($_SESSION['username'])){
 
     <hr>
     <div style="text-align:center">
+        <a href="./studentHome.php" class = 'sub'>Home</a>
         <a href="./Student/s_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./Student/s_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./Student/s_courseRegistration.php" class = 'sub'>Course Registration</a>
@@ -34,7 +35,7 @@ if(!isset($_SESSION['username'])){
 
     <hr>
     </hr>
-    <h2>Welcome <?php echo $_SESSION['username'];?></h2>
+    <h2>Welcome <?php echo $_SESSION['firstName'];?></h2>
 
 
     <form action="logout.php" method="post">

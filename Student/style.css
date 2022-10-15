@@ -21,9 +21,7 @@ a:hover.sub {
     color: gray;
 }
 
-.scroll_box{
-    height:300px;
-    width:500px;
-    border:1px solid #ccc;
-    overflow:auto;
+.display{
+    border: solid black 1px;
+    background-color:azure;
 }

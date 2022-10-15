@@ -35,6 +35,32 @@ if(!isset($_SESSION['username'])){
     </hr>
     <h2>Welcome <?php echo $_SESSION['username'];?></h2>
     
+
+    <h3>Insert Course</h3>
+    <form action="adminHome.php" method="post">
+		<div>
+			<label >Course Name</label>
+			<input type="text" name="courseName" required>
+		</div>
+
+		<div style="padding-top: 10px;"></div>
+
+		<div>
+			<label>Major</label>
+			<input type="text" name="major" required>
+		</div>
+		<button type="submit">Submit</button>
+	</form>	
+
+    <?php
+        $courseName = $_POST['courseName'];
+        $courseMajor = $_POST['courseMajor'];
+    ?>
+
+    <h1><?php echo $courseName;?></h1>
+
+
+
     <form action="logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
