@@ -3,30 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Course Registration Login</title>
+        <title>SignMeUp</title>
+		<link rel="stylesheet" href="style.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
-<body>
+<body class = "loginPage">
+	<div class = "loginFlexBox">
+		<div class = "loginBody">
 	
-	<h1>Course Registration Login</h1>
-	<hr>
-
-	<h2>Login Here</h2>
-
-	<form action="validation.php" method="post">
-		<div>
-			<label >Email</label>
-			<input type="text" name="email" class="form-control" required>
-		</div>
-
-		<div style="padding-top: 10px;"></div>
-
-		<div>
-			<label>Password</label>
-			<input type="password" name="password" required>
-		</div>
-		<button type="submit">Login</button>
-	</form>	
+			<h1 class="signMeUp">SignMeUp</h1>
 	
+
+			<h2 class="login" >Login</h2>
+
+			<form action="validation.php" method="post">
+				<div>
+					<label class = "h2">Username</label>
+					<input class="loginFields" type="text" name="email" class="form-control" required>
+				</div>
+
+		
+
+				<div>
+					<label class="h2">Password</label>
+					<input class="loginFields" type="password" name="password" required>
+				</div>
+
+		
+				<button class="loginButton" type="submit">Login</button>
+			</form>	
+		</div>
+		<img src = "login.jpg" class = "loginImage">
+	</div>
 </body>
 </html>
+
+

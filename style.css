@@ -1,7 +1,6 @@
 *{
     list-style: none;
     text-decoration: none;
-    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -19,4 +18,73 @@ a:visited.sub {
   
 a:hover.sub {
     color: gray;
+}
+
+.loginPage{
+	
+	background-color: black;
+}
+
+.loginButton {
+	/*CSS code for the login button making it more rounded and easier to look at*/
+	background-color: rgb(175, 8, 8);
+	color: rgb(249, 249, 250);
+	border: 2px solid #837f7f;
+	border-radius: 12px;
+	font-size: large;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	padding: auto;
+	width: 100px;
+	text-align: center;
+	text-decoration: dashed;
+	margin: 10px;
+	padding: 10px;
+}
+
+.loginFields{
+/*CSS for the text boxes that users can log in with  */
+	border-radius: 8px;
+	border-color:rgb(175, 8, 8);
+	border-width: 6px;
+	height: 24px;
+	width: 250px;
+	margin: 10px;
+	padding: 10px;
+
+}
+.loginBody{
+	/*CSS for the background image for the login page.*/
+	background-color: black;
+	margin: 10px;
+	padding: 10px;
+
+}
+
+.signMeUp{
+	/*customization for the header title for the login page*/
+	color: rgb(175, 8, 8);
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: xx-large;
+	margin: 10px;
+	padding: 10px;
+	
+}
+.login{
+	/*customization for all the other headers on the login page (username,password,login)*/
+	color: rgb(243, 249, 249);
+	font-size: large;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	margin: 10px;
+	padding: 10px;
+}
+.loginImage{
+	float: right;
+	margin: 10px;
+	padding: 10px;
+}
+.loginFlexBox{
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+	padding: 10px;
 }

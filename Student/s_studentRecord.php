@@ -2,6 +2,11 @@
 session_start();
 // studentHome.php
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
+
+
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -36,22 +41,32 @@ if(!isset($_SESSION['userID'])){
 
 
     <?php
-        $select = "SELECT $userID FROM Users WHERE userID = '$userID';";
+        $userID = $_SESSION['userID'];
+
+        $select = "SELECT title FROM Majors M INNER JOIN Students S ON M.id=S.majorID WHERE S.studentID = $userID;";
         $result = mysqli_query($connection, $select);	
         $array = mysqli_fetch_array($result);
-        $firstName = $array[0];
+        $major = $array[0];
+
+        $select = "SELECT title FROM Majors M INNER JOIN Students S ON M.id=S.minorID WHERE S.studentID = $userID;";
+        $result = mysqli_query($connection, $select);	
+        $array = mysqli_fetch_array($result);
+        $minor = $array[0];
+
+
+
     ?>
 
     <h2>Personal Information</h2>
     <div>
         <ul>
-            <li class = 'info'>Name: <?php echo $_SESSION['firstName']; ?> <?php echo $_SESSION['lastName']; ?></li>
-            <li class = 'info'>StudentID: <?php echo $_SESSION['userID']; ?></li>
-            <li class = 'info'>Email: <?php echo $_SESSION['email']; ?></li>
-            <li class = 'info'>Phone Number: <?php echo $_SESSION['phone']; ?></li>
-            <li class = 'info'>DoB: <?php echo $_SESSION['doB']; ?></li>
-            <li class = 'info'>Major: </li>
-            <li class = 'info'>Minor:</li>
+            <li class = 'info'><strong>Name:</strong> <?php echo $_SESSION['firstName']; ?> <?php echo $_SESSION['lastName']; ?></li>
+            <li class = 'info'><strong>StudentID:</strong> <?php echo $_SESSION['userID']; ?></li>
+            <li class = 'info'><strong>Email:</strong> <?php echo $_SESSION['email']; ?></li>
+            <li class = 'info'><strong>Phone Number:</strong> <?php echo $_SESSION['phone']; ?></li>
+            <li class = 'info'><strong>DoB:</strong> <?php echo $_SESSION['doB']; ?></li>
+            <li class = 'info'><strong>Major:</strong> <?php echo $major ?></li>
+            <li class = 'info'><strong>Minor:</strong> <?php echo $minor ?></li>
         </ul> 
 
     </div>
