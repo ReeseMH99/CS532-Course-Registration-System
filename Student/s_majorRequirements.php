@@ -20,7 +20,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Student</h3>
+    <h3><?php echo $_SESSION['firstName'];?></h3>
     <h1>Major Requirements</h1>
     <hr>
     <div style="text-align:center">

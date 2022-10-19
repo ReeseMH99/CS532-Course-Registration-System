@@ -25,7 +25,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Student</h3>
+    <h3><?php echo $_SESSION['firstName'];?></h3>
     <h1>Student Record</h1>
     <hr>
     <div style="text-align:center">
@@ -72,11 +72,31 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <h2>Current Courses</h2>
+    
+    <div>
+        <ul>
+            <li class = 'currcourse'>List of current courses here</li>
+        </ul> 
+
+    </div>
 
     <h2>Past Courses</h2>
 
+    <div>
+        <ul>
+            <li class = 'pastcourse'>List of past courses here</li>
+        </ul> 
+
+    </div>
+
     <h4>Print Report</h4>
 
+    <div>
+        <ul>
+            <li class = 'currcourse'>2 print report buttons here</li>
+        </ul> 
+
+    </div>
 
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>

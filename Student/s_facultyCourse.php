@@ -20,7 +20,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Student</h3>
+    <h3><?php echo $_SESSION['firstName'];?></h3>
     <h1>Faculty Course Information</h1>
     <hr>
     <div style="text-align:center">
@@ -34,9 +34,12 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
+    <h2>Faculty and Course Information</h2>
+    <h4>Query by faculty name or facultyID</h4>
+    <h4>Query by course name or courseID</h4>
+
 
     
-
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
     </form>

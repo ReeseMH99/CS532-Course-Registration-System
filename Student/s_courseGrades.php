@@ -20,7 +20,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Student</h3>
+    <h3><?php echo $_SESSION['firstName'];?></h3>
     <h1>Course Grades</h1>
     <hr>
     <div style="text-align:center">
@@ -34,8 +34,31 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
+    <h2>Grades by Semester</h2>
+    <form action="s_courseGrades.php" method="post">
+        <select name="option-selected">
+            <option value="1">Spring 2022</option>
+            <option value="2">Fall 2022</option>
+            <option value="3">Spring 2023</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
 
-    
+    <div class = 'display'>
+        <?php
+        ?>
+    </div>
+
+    <h4>Print Reports</h4>
+
+    <div>
+        <ul>
+            <li class = 'currcourse'>Print grade sheet</li>
+        </ul> 
+        <button type="submit">Grade Sheet</button>
+
+    </div>
+
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
