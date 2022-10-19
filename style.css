@@ -88,3 +88,8 @@ a:hover.sub {
 	margin: 10px;
 	padding: 10px;
 }
+
+.display{
+    border: solid black 1px;
+    background-color:azure;
+}

@@ -18,7 +18,7 @@ if(!isset($_SESSION['userID'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Student: Course Registration</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
@@ -56,6 +56,9 @@ if(!isset($_SESSION['userID'])){
             echo "<table><tr><th>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
+                echo "<th><form action='s_registerCourse.php' method='post' target = 'blank'>
+                    <button type='submit' formmethod = 'post' name = 'courseID' id='courseID' value='$row[0]'>Register</button>
+                    </form></th>";
                 echo "<th> $row[2]</th>";
                 echo "<th> $row[1]</th>";
                 echo "</tr>";

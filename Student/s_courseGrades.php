@@ -15,7 +15,7 @@ if(!isset($_SESSION['userID'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Student: Course Grades</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
@@ -36,7 +36,6 @@ if(!isset($_SESSION['userID'])){
     
 
     
-
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
     </form>
