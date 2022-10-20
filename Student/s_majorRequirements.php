@@ -2,6 +2,9 @@
 session_start();
 // studentHome.php
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -34,8 +37,65 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-
+    <h2>Search Requirements by Major</h2>
+    <form action="s_majorRequirements.php" method="post">
+        <select name="option-selected">
+            <option value="1">Computer Science</option>
+            <option value="2">Biology</option>
+            <option value="3">Statistics</option>
+            <option value="4">Math</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
     
+    <div class = 'display'>
+        <?php
+            $majorSearch = $_POST['option-selected'];
+            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
+            //$select2 = "SELECT $select FROM courses WHERE requiredBool = 1"
+            $result = mysqli_query($connection, $select);	
+            echo "<table><tr><th>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<tr>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[1]</th>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            
+        
+        ?>
+    </div>
+
+    <h2>Search Outline by Major</h2>
+    <form action="s_majorRequirements.php" method="post">
+        <select name="option-selected">
+            <option value="1">Computer Science</option>
+            <option value="2">Biology</option>
+            <option value="3">Statistics</option>
+            <option value="4">Math</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div class = 'display'>
+        <?php
+            $majorSearch = $_POST['option-selected'];
+            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
+            //$select2 = "SELECT $select FROM courses WHERE requiredBool = 1"
+            $result = mysqli_query($connection, $select);	
+            echo "<table><tr><th>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<tr>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[1]</th>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            
+        
+        ?>
+    </div>
 
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
