@@ -2,6 +2,9 @@
 session_start();
 // studentHome.php
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -37,15 +40,46 @@ if(!isset($_SESSION['userID'])){
     <h2>Grades by Semester</h2>
     <form action="s_courseGrades.php" method="post">
         <select name="option-selected">
-            <option value="1">Spring 2022</option>
-            <option value="2">Fall 2022</option>
-            <option value="3">Spring 2023</option>
+            <option value="SP22">Spring 2022</option>
+            <option value="FA22">Fall 2022</option>
+            <option value="SP23">Spring 2023</option>
         </select>
         <button type="submit">Submit</button>
     </form>
 
     <div class = 'display'>
         <?php
+            $userID = $_SESSION['userID'];
+            $semester = $_POST['option-selected'];
+
+            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.grade, SS.status 
+                        FROM Courses C 
+                        INNER JOIN  courseSchedule CS on CS.courseID = C.id 
+                        INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
+                        WHERE SS.studentID = $userID 
+                        AND CS.semester = $semester";
+
+            $result = mysqli_query($connection, $select);
+            $count = mysqli_num_rows($result);
+            echo "<table><tr>
+            <th>Course Number</th>
+            <th>Course Name</th>
+            <th>Date and Time</th>
+            <th>Location</th>
+            <th>Grade</th>
+            <th>Status</th>
+            </tr>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<tr>";
+                echo "<th> $row[0]</th>";
+                echo "<th> $row[1]</th>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[3]</th>";
+                echo "<th> $row[4]</th>";
+                echo "<th> $row[5]</th>";
+                echo "</tr>";
+            }
+            echo "</table>";
         ?>
     </div>
 

@@ -51,7 +51,7 @@ if(!isset($_SESSION['userID'])){
     <div class = 'display'>
         <?php
             $majorSearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
+            $select = "SELECT * FROM courses WHERE majorID = $majorSearch";
             $result = mysqli_query($connection, $select);	
             echo "<table><tr><th>";
             while($row = mysqli_fetch_array($result)){
