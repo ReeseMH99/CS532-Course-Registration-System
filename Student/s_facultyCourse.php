@@ -29,7 +29,7 @@ if(!isset($_SESSION['userID'])){
         <a href="./s_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./s_courseRegistration.php" class = 'sub'>Course Registration</a>
         <a href="./s_majorRequirements.php" class = 'sub'>Major Requirements</a>
-        <a href="./s_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
+        <a href="./s_facultyCourse.php"  style = "color: red" class = 'sub'>Faculty Course Information</a>
     </div>
     </hr>
     <hr>
