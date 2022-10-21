@@ -57,10 +57,11 @@ if(!isset($_SESSION['userID'])){
                         INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                         INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
                         WHERE SS.studentID = $userID 
-                        AND CS.semester = $semester";
+                        AND CS.semester = '$semester'";
 
             $result = mysqli_query($connection, $select);
             $count = mysqli_num_rows($result);
+            echo "<strong> $semester </strong>";
             echo "<table><tr>
             <th>Course Number</th>
             <th>Course Name</th>
