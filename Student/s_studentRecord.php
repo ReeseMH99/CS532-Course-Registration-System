@@ -117,7 +117,7 @@ if(!isset($_SESSION['userID'])){
                         FROM Courses C 
                         INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                         INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
-                        WHERE SS.studentID = $userID 
+                        WHERE SS.studentID = $userID
                         AND CS.semester = 'SP22'";
 
             $result = mysqli_query($connection, $select);

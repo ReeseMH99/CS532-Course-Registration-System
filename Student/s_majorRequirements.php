@@ -51,13 +51,16 @@ if(!isset($_SESSION['userID'])){
     <div class = 'display'>
         <?php
             $majorSearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
+            $select = "SELECT C.courseNumber, C.title
+                         FROM Courses C 
+                         INNER JOIN  majorRequirements MR on MR.courseID = C.id 
+                         WHERE MR.majorID = $majorSearch;";
             //$select2 = "SELECT $select FROM courses WHERE requiredBool = 1"
             $result = mysqli_query($connection, $select);	
             echo "<table><tr><th>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
-                echo "<th> $row[2]</th>";
+                echo "<th> $row[0]</th>";
                 echo "<th> $row[1]</th>";
                 echo "</tr>";
             }
@@ -82,7 +85,6 @@ if(!isset($_SESSION['userID'])){
         <?php
             $majorSearch = $_POST['option-selected'];
             $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
-            //$select2 = "SELECT $select FROM courses WHERE requiredBool = 1"
             $result = mysqli_query($connection, $select);	
             echo "<table><tr><th>";
             while($row = mysqli_fetch_array($result)){

@@ -62,15 +62,21 @@ if(!isset($_SESSION['userID'])){
             $result = mysqli_query($connection, $select);
             $count = mysqli_num_rows($result);
             echo "<strong> $semester </strong>";
-            echo "<table><tr>
-            <th>Course Number</th>
-            <th>Course Name</th>
-            <th>Date and Time</th>
-            <th>Location</th>
-            <th>Grade</th>
-            <th>Status</th>
-            </tr>";
+            echo "<table><tr>";
+            $flag = true;
             while($row = mysqli_fetch_array($result)){
+               
+                while($flag){
+                    echo "<th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                    </tr>";
+                    $flag = false;
+                }
+               
                 echo "<tr>";
                 echo "<th> $row[0]</th>";
                 echo "<th> $row[1]</th>";
@@ -95,7 +101,7 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button style= "margin-bottom: 20px" type="submit">Logout</button>
     </form>
 
 </body>

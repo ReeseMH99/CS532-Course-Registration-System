@@ -36,6 +36,7 @@ if(!isset($_SESSION['userID'])){
     
     <h2>Faculty and Course Information</h2>
     <h4>Query by faculty name or facultyID</h4>
+
     <form action="s_facultyCourse.php" method="post">
         <select name="option-selected">
             <option value="11">Axel Lopez</option>
