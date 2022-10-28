@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
 
 //if variable not set
 if(!isset($_SESSION['userID'])){
@@ -30,46 +32,105 @@ if(!isset($_SESSION['userID'])){
         <a href="./s_courseRegistration.php" class = 'sub'>Course Registration</a>
         <a href="./s_majorRequirements.php" class = 'sub'>Major Requirements</a>
         <a href="./s_facultyCourse.php"  style = "color: red" class = 'sub'>Faculty Course Information</a>
-    </div>
+    </div> 
     </hr>
     <hr>
     
     <h2>Faculty and Course Information</h2>
     <h4>Query by faculty name or facultyID</h4>
 
-    <form action="s_facultyCourse.php" method="post">
-        <select name="option-selected">
-            <option value="11">Axel Lopez</option>
-            <option value="12">Meredith Palmer</option>
-            <option value="13">Blake Strong</option>
-            <option value="14">Ferdinand Jaurez</option>
-            <option value="15">Ashley Sherman</option>
-            <option value="16">John Lynn</option>
-            <option value="17">Isaac Jacobs</option>
-            <option value="18">Kayla Atkinson</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    
+
+    <?php
+        $SP22 = "SP22";
+        $FA22 = "FA22";
+        $SP23 = "SP23";
+
+        $select = "SELECT T.teacherID, U.firstName, U.lastName 
+                    FROM Teachers T 
+                    INNER JOIN Users U on T.teacherID = U.userID";
+        $result = mysqli_query($connection, $select);
+        echo "<form action='s_facultyCourse.php' method='post'>
+                    <label for = 'facultySelect'> Search Teacher:</label>
+                    <input type = 'text' name = 'facultySelect' id = 'facultySelect' list = 'facultyList'>
+                    <datalist id = 'facultyList'>";
+        while($row = mysqli_fetch_array($result)){
+            echo "<option value = '$row[0]'>$row[1] $row[2]</option>";
+        }
+        echo "      </datalist>
+                    <select name='semester'>
+                        <option value='$SP22'>Spring 2022</option>
+                        <option value='$FA22' selected>Fall 2022</option>
+                        <option value='$SP23'>Spring 2023</option>
+                    </select>
+                    <button type='submit'>Search</button>
+                </form>";
+    ?>
+
     <div class = 'display'>
         <?php
-            $facultySearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $facultySearch;";
-            $result = mysqli_query($connection, $select);	
-            echo "<table><tr><th>";
-            while($row = mysqli_fetch_array($result)){
-                echo "<tr>";
-                echo "<th><form action='s_facultyCourse.php' method='post' target = 'blank'>
-                    </form></th>";
-                echo "<th> $row[2]</th>";
-                echo "<th> $row[1]</th>";
-                echo "</tr>";
+            $facultyID = $_POST['facultySelect'];
+            $semester = $_POST['semester'];
+            $select = "SELECT T.teacherID, T.title, U.firstName, U.lastName, T.officeNumber, T.officePhone, D.title 
+                        FROM Teachers T 
+                        INNER JOIN Users U on T.teacherID = U.userID
+                        INNER JOIN Departments D on T.departmentID = D.id
+                        WHERE T.teacherID = $facultyID";
+            $result = mysqli_query($connection, $select);
+            $row = mysqli_fetch_array($result);
+            if($result){
+                echo "<h3>Teacher Info</h3>
+                        <ul>
+                            <li><strong>ID:</strong> $row[0]</li>
+                            <li><strong>Name:</strong> $row[1] $row[2] $row[3]</li>
+                            <li><strong>Office Location:</strong> $row[4]</li>
+                            <li><strong>Office Phone:</strong> $row[5]</li> 
+                            <li><strong>Department:</strong> $row[6]</li>
+                        </ul>";
+
+
+                echo "<h3>Courses</h3>";
+                echo "<h4>Semester: $semester</h4>";
+                $selectC = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, CS.totalNumSeats
+                            FROM courseSchedule CS
+                            INNER JOIN Teachers T on T.teacherID = CS.teacherID
+                            INNER JOIN Courses C on C.id = CS.courseID
+                            WHERE T.teacherID = $facultyID
+                            AND CS.semester = '$semester'";
+                $resultC = mysqli_query($connection, $selectC);
+                $count = mysqli_num_rows($resultC);
+
+                echo "<table>
+                        <tr>
+                            <th><strong>Course Number</strong></th>
+                            <th><strong>Course Name</strong></th>
+                            <th><strong>Day and Time</strong></th>
+                            <th><strong>Location</strong></th>
+                            <th><strong>Total Seats</strong></th>
+                        </tr>";
+                while($rowC = mysqli_fetch_array($resultC)){
+                    echo "<tr>
+                            <th>$rowC[0]</th>
+                            <th>$rowC[1]</th>
+                            <th>$rowC[2]</th>
+                            <th>$rowC[3]</th>
+                            <th>$rowC[4]</th>
+                        </tr>";
+                }
+                echo "</table>";
             }
-            echo "</table>";
-            
-        
         ?>
     </div>
+
+
+
+
+    
+
+
+
+    
+
+    
     <h4>Query by course name or courseID</h4>
     
     <form action="../logout.php" method="post">
