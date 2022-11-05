@@ -10,6 +10,7 @@ if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
+
 ?>
 
 <!DOCTYPE html> 
@@ -52,20 +53,23 @@ if(!isset($_SESSION['userID'])){
         <?php
             $majorSearch = $_POST['option-selected'];
             $select = "SELECT * FROM courses WHERE majorID = $majorSearch";
-            $result = mysqli_query($connection, $select);	
-            echo "<table><tr><th>";
+            $result = mysqli_query($connection, $select);
+            
+            
+
+            echo "<table><tr><th>"; 
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<th><form action='s_registerCourse.php' method='post' target = 'blank'>
                     <button type='submit' formmethod = 'post' name = 'courseID' id='courseID' value='$row[0]'>Register</button>
-                    </form></th>";
+                    </form></th>"; 
                 echo "<th> $row[2]</th>";
                 echo "<th> $row[1]</th>";
                 echo "</tr>";
+                
             }
-            echo "</table>";
-            
-        
+            echo "</table>";  
+
         ?>
     </div>
 

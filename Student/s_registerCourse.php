@@ -17,6 +17,18 @@ $result = mysqli_query($connection, $select);
 $array = mysqli_fetch_array($result);
 $courseTitle = $array[0];
 
+if(isset($_POST['courseID'])){
+    echo "Hello";
+    echo "$courseID";
+    //echo "$courseTitle";
+    $query = "INSERT INTO studentschedule (studentID, scheduleID, grade, `status`)
+                VALUES ('1','13','ENROLLED','ENROLLED')";
+    if(mysqli_query($connection, $query)){
+        echo "Success";
+    }else{
+        echo "Failure";
+    }
+}
 
 ?>
 
@@ -33,15 +45,6 @@ $courseTitle = $array[0];
     <h1>Register</h1>
 
     <h2><?php echo $courseTitle?></h2>
-
-
-
-
-
-
-
-
-    
    
 
 </body>

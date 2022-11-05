@@ -145,6 +145,43 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
+    <h2>Future Courses</h2>
+
+    <div class = 'display'>
+        <?php
+            $userID = $_SESSION['userID'];
+
+            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.status 
+                        FROM Courses C 
+                        INNER JOIN  courseSchedule CS on CS.courseID = C.id 
+                        INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
+                        WHERE SS.studentID = $userID
+                        AND CS.semester = 'SP23'";
+
+            $result = mysqli_query($connection, $select);
+            $count = mysqli_num_rows($result);
+            
+            echo "<table><tr>
+            <th>Course Number</th>
+            <th>Course Name</th>
+            <th>Date and Time</th>
+            <th>Location</th>
+            <th>Status</th>
+            </tr>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<tr>";
+                echo "<th> $row[0]</th>";
+                echo "<th> $row[1]</th>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[3]</th>";
+                echo "<th> $row[4]</th>";
+                echo "<th> $row[5]</th>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        ?>
+    </div>
+
     <h4>Print Report</h4>
 
     <div>
