@@ -10,23 +10,28 @@ if(!isset($_SESSION['userID'])){
 	header('location:login.html');
 }
 
+$userID = $_SESSION['userID'];
 $courseID = $_POST['courseID'];
 
-$select = "SELECT title FROM Courses WHERE id = $courseID;";
+$select = "SELECT title FROM Courses WHERE id = $courseID";
 $result = mysqli_query($connection, $select);	
 $array = mysqli_fetch_array($result);
 $courseTitle = $array[0];
 
+$select2 = "SELECT scheduleID FROM courseschedule
+            WHERE courseID = $courseID
+            AND semester = 'SP23'";
+$result2 = mysqli_query($connection, $select2);
+$array2 = mysqli_fetch_array($result2);
+
 if(isset($_POST['courseID'])){
-    echo "Hello";
-    echo "$courseID";
-    //echo "$courseTitle";
     $query = "INSERT INTO studentschedule (studentID, scheduleID, grade, `status`)
-                VALUES ('1','13','ENROLLED','ENROLLED')";
+                VALUES ('$userID','$array2[0]','ENROLLED','ENROLLED')
+                WHERE NOT EXISTS (SELECT 1 FROM Courses WHERE id = $courseID)";
     if(mysqli_query($connection, $query)){
-        echo "Success";
+        echo "Registration successful";
     }else{
-        echo "Failure";
+        echo "Registration failed";
     }
 }
 

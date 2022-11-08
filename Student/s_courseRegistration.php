@@ -11,6 +11,9 @@ if(!isset($_SESSION['userID'])){
 	header('location:login.html');
 }
 
+$userID = $_SESSION['userID'];
+
+
 ?>
 
 <!DOCTYPE html> 
@@ -54,8 +57,6 @@ if(!isset($_SESSION['userID'])){
             $majorSearch = $_POST['option-selected'];
             $select = "SELECT * FROM courses WHERE majorID = $majorSearch";
             $result = mysqli_query($connection, $select);
-            
-            
 
             echo "<table><tr><th>"; 
             while($row = mysqli_fetch_array($result)){
@@ -72,7 +73,6 @@ if(!isset($_SESSION['userID'])){
 
         ?>
     </div>
-
 
     <form action="../logout.php" method="post">
         <button type="submit">Logout</button>
