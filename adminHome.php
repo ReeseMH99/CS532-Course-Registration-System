@@ -3,7 +3,7 @@ session_start();
 // adminHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
@@ -35,8 +35,10 @@ if(!isset($_SESSION['username'])){
     </hr>
     <h2>Welcome <?php echo $_SESSION['username'];?></h2>
     
-
-    <h3>Insert Course</h3>
+    <h3>Add Student</h3>
+    <h3>Add Teacher</h3>
+    <h3>Add Major</h3>
+    <h3>Add Course</h3>
     <form action="adminHome.php" method="post">
 		<div>
 			<label >Course Name</label>
@@ -59,6 +61,13 @@ if(!isset($_SESSION['username'])){
 
     <h1><?php echo $courseName;?></h1>
 
+    <h3>Add Course Prerequisite</h3>
+    <h3>Add Major Requirement</h3>
+    <h3>Update User Data</h3>
+    <h3>Add Student Schedule Item</h3>
+    <h3>Add Course Schedule Item</h3>
+    <h3>View/Change Grades</h3>
+    
 
 
     <form action="logout.php" method="post">
