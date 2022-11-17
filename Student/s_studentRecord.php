@@ -5,13 +5,34 @@ session_start();
 $connection = mysqli_connect('localhost', 'root', 'root');
 mysqli_select_db($connection, 'CourseRegDB2');
 
-
-
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
+
+// echo "Test";
+// $userID = $_SESSION['userID'];
+// echo "\n $userID";
+// $courseID = $_POST['courseID'];
+// echo "\n $courseID";
+
+// if(isset($_POST['courseID'])){
+    
+
+//     $select2 = "SELECT scheduleID FROM courseschedule
+//                 WHERE courseID = $courseID
+//                 AND semester = 'SP23'";
+//     $result2 = mysqli_query($connection, $select2);
+//     $array2 = mysqli_fetch_array($result2);
+//     $query = "DELETE FROM studentschedule WHERE studentID = '$userID' AND scheduleID = '$array2[0]'";    
+//     if(mysqli_query($connection, $query)){
+//         echo "Deletion successful";
+//     }else{
+//         echo "Deletion failed";
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html> 
@@ -41,6 +62,7 @@ if(!isset($_SESSION['userID'])){
 
 
     <?php
+
         $userID = $_SESSION['userID'];
 
         $select = "SELECT title FROM Majors M INNER JOIN Students S ON M.id=S.majorID WHERE S.studentID = $userID;";
@@ -52,8 +74,6 @@ if(!isset($_SESSION['userID'])){
         $result = mysqli_query($connection, $select);	
         $array = mysqli_fetch_array($result);
         $minor = $array[0];
-
-
 
     ?>
 
@@ -160,7 +180,7 @@ if(!isset($_SESSION['userID'])){
 
             $result = mysqli_query($connection, $select);
             $count = mysqli_num_rows($result);
-            
+
             echo "<table><tr>
             <th>Course Number</th>
             <th>Course Name</th>
@@ -169,6 +189,7 @@ if(!isset($_SESSION['userID'])){
             <th>Status</th>
             </tr>";
             while($row = mysqli_fetch_array($result)){
+                 
                 echo "<tr>";
                 echo "<th> $row[0]</th>";
                 echo "<th> $row[1]</th>";
@@ -176,6 +197,9 @@ if(!isset($_SESSION['userID'])){
                 echo "<th> $row[3]</th>";
                 echo "<th> $row[4]</th>";
                 echo "<th> $row[5]</th>";
+                // echo "<th><form action='s_studentRecord.php' method='post'>
+                // <button type='submit' formmethod = 'post' name = 'courseID' id='courseID' value='courseID'>Drop</button>
+                // </form></th>";
                 echo "</tr>";
             }
             echo "</table>";
