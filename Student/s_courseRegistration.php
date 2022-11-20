@@ -55,17 +55,44 @@ $userID = $_SESSION['userID'];
     <div class = 'display'>
         <?php
             $majorSearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $majorSearch";
+            //$select = "SELECT * FROM courses WHERE majorID = $majorSearch";
+            $select = "SELECT C.id, C.courseNumber, C.title, T.title, U.firstName, U.lastName, CS.dateTime, CS.location, CS.totalNumSeats 
+                        FROM Courses C 
+                        INNER JOIN courseSchedule CS on CS.courseID = C.id
+                        INNER JOIN teachers T on T.teacherID = CS.teacherID
+                        INNER JOIN users U on U.userID = T.teacherID
+                        WHERE C.majorID = $majorSearch
+                        AND CS.semester = 'SP23'";
             $result = mysqli_query($connection, $select);
 
             echo "<table><tr><th>"; 
+            $flag = true;
             while($row = mysqli_fetch_array($result)){
+                while($flag){
+
+                    echo "<tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Professor</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    <th>Seats</th>
+                    </tr>";
+                    $flag = false;
+                }
                 echo "<tr>";
+                echo "<th> $row[1]</th>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[3] $row[4] $row[5]</th>";
+                echo "<th> $row[6]</th>";
+                echo "<th> $row[7]</th>";
+                echo "<th> $row[8]</th>";
                 echo "<th><form action='s_registerCourse.php' method='post' target = 'blank'>
                     <button type='submit' formmethod = 'post' name = 'courseID' id='courseID' value='$row[0]'>Register</button>
                     </form></th>"; 
-                echo "<th> $row[2]</th>";
-                echo "<th> $row[1]</th>";
+                // echo "<th>$row[2]</th>";
+                // echo "<th>$row[1]</th>";
+
                 echo "</tr>";
                 
             }

@@ -25,9 +25,9 @@ $result2 = mysqli_query($connection, $select2);
 $array2 = mysqli_fetch_array($result2);
 
 if(isset($_POST['courseID'])){
-    $query = "INSERT INTO studentschedule (studentID, scheduleID, grade, `status`)
-                VALUES ('$userID','$array2[0]','ENROLLED','ENROLLED')
-                WHERE NOT EXISTS (SELECT 1 FROM Courses WHERE id = $courseID)";
+    $query = "INSERT INTO studentschedule (studentID, scheduleID, grade, `status`, gradeval)
+                VALUES ('$userID','$array2[0]','ENROLLED','ENROLLED', '0')";
+                
     if(mysqli_query($connection, $query)){
         echo "Registration successful";
     }else{
