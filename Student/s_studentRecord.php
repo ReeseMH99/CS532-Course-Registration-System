@@ -11,27 +11,7 @@ if(!isset($_SESSION['userID'])){
 	header('location:login.html');
 }
 
-// echo "Test";
-// $userID = $_SESSION['userID'];
-// echo "\n $userID";
-// $courseID = $_POST['courseID'];
-// echo "\n $courseID";
 
-// if(isset($_POST['courseID'])){
-    
-
-//     $select2 = "SELECT scheduleID FROM courseschedule
-//                 WHERE courseID = $courseID
-//                 AND semester = 'SP23'";
-//     $result2 = mysqli_query($connection, $select2);
-//     $array2 = mysqli_fetch_array($result2);
-//     $query = "DELETE FROM studentschedule WHERE studentID = '$userID' AND scheduleID = '$array2[0]'";    
-//     if(mysqli_query($connection, $query)){
-//         echo "Deletion successful";
-//     }else{
-//         echo "Deletion failed";
-//     }
-// }
 
 ?>
 
@@ -169,9 +149,13 @@ if(!isset($_SESSION['userID'])){
 
     <div class = 'display'>
         <?php
+            //echo "Test";
             $userID = $_SESSION['userID'];
+            //echo "\n $userID";
+            
 
-            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.status 
+
+            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.status, CS.scheduleID 
                         FROM Courses C 
                         INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                         INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
@@ -197,12 +181,36 @@ if(!isset($_SESSION['userID'])){
                 echo "<th> $row[3]</th>";
                 echo "<th> $row[4]</th>";
                 echo "<th> $row[5]</th>";
-                // echo "<th><form action='s_studentRecord.php' method='post'>
-                // <button type='submit' formmethod = 'post' name = 'courseID' id='courseID' value='courseID'>Drop</button>
-                // </form></th>";
+                echo "<th><form action='s_studentRecord.php' method='post'>
+                <button type='submit' formmethod = 'post' name = 'scheduleID' id='scheduleID' value='$row[5]'>Drop</button>
+                </form></th>";
                 echo "</tr>";
             }
             echo "</table>";
+
+            $scheduleID = $_POST['scheduleID'];
+            $semesterEnrolled = 'SP23';
+
+            //echo "$courseID";
+            if(isset($_POST['scheduleID'])){
+                // echo "$courseID";
+                
+                // $select = "SELECT C.courseNumber, C.title
+                //         FROM Courses C 
+                //         INNER JOIN  courseSchedule CS on CS.courseID = C.id 
+                //         INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID";                $result = mysqli_query($connection, $select);
+                // $array = mysqli_fetch_array($result);
+                // echo "$array[0]";
+                // echo "$array[1]";
+            
+                $query = "DELETE FROM studentschedule WHERE studentID = '$userID' AND scheduleID = '$scheduleID'";    
+                if(mysqli_query($connection, $query)){
+                    echo "Deletion successful";
+                }else{
+                    echo "Deletion failed";
+                }
+            }
+
         ?>
     </div>
 
