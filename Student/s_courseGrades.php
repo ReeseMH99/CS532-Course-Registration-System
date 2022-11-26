@@ -130,7 +130,41 @@ if(!isset($_SESSION['userID'])){
                 echo "<th> $row[6]</th>";
                 echo "</tr>";
             }
+            $select2 = "SELECT SS.gradeVal
+            FROM studentSchedule SS
+            INNER JOIN  courseSchedule CS on CS.scheduleID = SS.scheduleID 
+            WHERE SS.studentID = $userID
+            AND SS.status = 'PASS' OR SS.status = 'FAIL'";
+            $result2 = mysqli_query($connection, $select2);
+            $count = mysqli_num_rows($result2);
+            $sum = 0;
+            while($row2 = mysqli_fetch_array($result2)){
+                
+                $sum += $row2['gradeVal'];
+            }
+            $gpa = $sum / $count;
+            $gpa_formatted = number_format($gpa, 2);
+            echo "<strong> Grade Point Average (GPA): $gpa_formatted</strong>";
             echo "</table>";
+        ?>
+        <?php
+       
+        ?>
+        <?php
+            $select3 = "SELECT C.credits
+                        FROM Courses C
+                        INNER JOIN  courseSchedule CS on CS.courseID = C.id 
+                        INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
+                        WHERE SS.studentID = $userID
+                        AND SS.status = 'PASS'";
+            $result3 = mysqli_query($connection, $select3);
+            $sumCredits = 0;
+            $count2 = mysqli_num_rows($result3);
+            while($row3 = mysqli_fetch_array($result3)){
+                 
+                $sumCredits += $row3['credits'];
+            }
+            echo "\r\n<strong> Number of Credits Earned: $sumCredits</strong>";
         ?>
     </div>
     
