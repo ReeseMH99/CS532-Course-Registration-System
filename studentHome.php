@@ -35,7 +35,7 @@ if(!isset($_SESSION['userID'])){
 
     <hr>
     </hr>
-    <h2>Welcome <?php echo $_SESSION['firstName'];?></h2>
+    <h2>Welcome, <?php echo $_SESSION['firstName'];?>!</h2>
 
 
     <form action="logout.php" method="post">

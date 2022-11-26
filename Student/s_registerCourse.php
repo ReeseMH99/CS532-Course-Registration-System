@@ -47,7 +47,7 @@ if(isset($_POST['courseID'])){
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
-    <h1>Register</h1>
+    <h1>Registration For:</h1>
 
     <h2><?php echo $courseTitle?></h2>
    

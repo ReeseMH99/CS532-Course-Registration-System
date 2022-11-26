@@ -102,7 +102,7 @@ $userID = $_SESSION['userID'];
     </div>
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button style="margin-top: 30px" type="submit">Logout</button>
     </form>
 
 </body>

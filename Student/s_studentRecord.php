@@ -123,15 +123,20 @@ if(!isset($_SESSION['userID'])){
             $result = mysqli_query($connection, $select);
             $count = mysqli_num_rows($result);
             
-            echo "<table><tr>
-            <th>Course Number</th>
-            <th>Course Name</th>
-            <th>Date and Time</th>
-            <th>Location</th>
-            <th>Grade</th>
-            <th>Status</th>
-            </tr>";
+            $flag=true;
             while($row = mysqli_fetch_array($result)){
+
+                while($flag){
+                    echo "<table><tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                    </tr>";
+                    $flag = false;
+                }
                 echo "<tr>";
                 echo "<th> $row[0]</th>";
                 echo "<th> $row[1]</th>";
@@ -165,22 +170,28 @@ if(!isset($_SESSION['userID'])){
             $result = mysqli_query($connection, $select);
             $count = mysqli_num_rows($result);
 
-            echo "<table><tr>
-            <th>Course Number</th>
-            <th>Course Name</th>
-            <th>Date and Time</th>
-            <th>Location</th>
-            <th>Status</th>
-            </tr>";
+            
+            $flag=true;
             while($row = mysqli_fetch_array($result)){
                  
+                while($flag){
+                    echo "<table><tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    </tr>";
+                    $flag = false;
+                }
+
                 echo "<tr>";
                 echo "<th> $row[0]</th>";
                 echo "<th> $row[1]</th>";
                 echo "<th> $row[2]</th>";
                 echo "<th> $row[3]</th>";
                 echo "<th> $row[4]</th>";
-                echo "<th> $row[5]</th>";
+                //echo "<th> $row[5]</th>";
                 echo "<th><form action='s_studentRecord.php' method='post'>
                 <button type='submit' formmethod = 'post' name = 'scheduleID' id='scheduleID' value='$row[5]'>Drop</button>
                 </form></th>";
@@ -205,26 +216,17 @@ if(!isset($_SESSION['userID'])){
             
                 $query = "DELETE FROM studentschedule WHERE studentID = '$userID' AND scheduleID = '$scheduleID'";    
                 if(mysqli_query($connection, $query)){
-                    echo "Deletion successful";
+                    echo "Course drop successful";
                 }else{
-                    echo "Deletion failed";
+                    echo "Course drop failed";
                 }
             }
 
         ?>
     </div>
 
-    <h4>Print Report</h4>
-
-    <div>
-        <ul>
-            <li class = 'currcourse'>2 print report buttons here</li>
-        </ul> 
-
-    </div>
-
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button type="submit" style="margin-top: 30px" >Logout</button>
     </form>
 
 </body>

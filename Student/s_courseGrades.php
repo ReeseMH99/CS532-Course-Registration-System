@@ -172,7 +172,7 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <form action="../logout.php" method="post">
-        <button style= "margin-bottom: 20px" type="submit">Logout</button>
+        <button style="margin-top: 30px" type="submit">Logout</button>
     </form>
 
 </body>
