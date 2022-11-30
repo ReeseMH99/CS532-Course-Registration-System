@@ -10,16 +10,19 @@ if(!isset($_SESSION['userID'])){
 	header('location:login.html');
 }
 
-$gradeUpdate = $_POST['grade'];
+$gradeUpdate = $_POST['option-selected'];
 $userID = $_POST["view"];
 
-$select = "UPDATE studentschedule SET grade=$gradeUpdate WHERE studentID=$userID";
+echo $gradeUpdate;
+echo $userID;
 
-if ($connection->query($select) === TRUE) {
-    echo "Record updated successfully";
-} else {
-    echo "Error updating record: " . $connection->error;
-}
+//$select = "UPDATE studentschedule SET grade=$gradeUpdate WHERE studentID=$userID";
+
+//if ($connection->query($select) === TRUE) {
+    //echo "Record updated successfully";
+//} else {
+    //echo "Error updating record: " . $connection->error;
+//}
 
 
 ?>

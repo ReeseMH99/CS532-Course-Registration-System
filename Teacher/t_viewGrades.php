@@ -170,7 +170,7 @@ if(!isset($_SESSION['userID'])){
                     }
                     echo "<th>" .
                             '<form action="t_updateGrades.php" method="post" id="gradesform">
-                                <select name="option-selected">' . 
+                                <select name="option-selected[]">' . 
                                     $optionsFormat .
                                 '</select>
                             </form>'
@@ -187,7 +187,11 @@ if(!isset($_SESSION['userID'])){
     $newGrade = $_POST['option-selected'];
     echo "<form action='t_updateGrade.php' method = 'post'>
     <button type = 'submit' form = 'gradesform' name ='grade' value=$newGrade>Submit Grade Changes</button>
-</form>";
+</form>
+    <script>
+        document.forms[1].submit();
+    </script>";
+
 ?>
 
 
