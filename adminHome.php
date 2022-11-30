@@ -3,7 +3,7 @@ session_start();
 // adminHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
@@ -38,27 +38,44 @@ if(!isset($_SESSION['username'])){
 
     <h3>Insert Course</h3>
     <form action="adminHome.php" method="post">
-		<div>
-			<label >Course Name</label>
-			<input type="text" name="courseName" required>
-		</div>
+        <div>
+            <label >id</label>
+            <input type="text" name="id" required>
+        </div>
+        <div>
+            <label>title</label>
+            <input type="text" name="title" required>
+        </div>
+        <div>
+            <label>Course Number</label>
+            <input type="text" name="courseNumber" required>
+        </div>
+        <div>
+            <label>Major ID</label>
+            <input type="text" name="majorID" required>
+        </div>
+        <div>
+            <label>bool</label>
+            <input type="text" name="requiredBool" required>
+        </div>
+        <div>
+            <label>credits</label>
+            <input type="text" name="credits" required>
+        </div>
 
-		<div style="padding-top: 10px;"></div>
-
-		<div>
-			<label>Major</label>
-			<input type="text" name="major" required>
-		</div>
-		<button type="submit">Submit</button>
+		<input type="submit" name = "submit" value = "Submit">
 	</form>	
 
     <?php
-        $courseName = $_POST['courseName'];
-        $courseMajor = $_POST['courseMajor'];
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $courseNumber = $_POST['courseNumber'];
+        $majorID = $_POST['majorID'];
+        $requiredBool = $_POST['requiredBool'];
+        $credits = $_POST['credits'];
+
+        $sql = "INSERT INTO courses VALUES ('id', 'title', 'courseNumber', 'majorID', 'requiredBool', 'credits')";
     ?>
-
-    <h1><?php echo $courseName;?></h1>
-
 
 
     <form action="logout.php" method="post">
