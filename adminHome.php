@@ -2,6 +2,9 @@
 session_start();
 // adminHome.php
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -40,97 +43,55 @@ if(!isset($_SESSION['userID'])){
 
     <h3>Insert Course</h3>
     <form action="adminHome.php" method="post">
-		<div>
-			<label >Course Name</label>
-			<input type="text" name="courseName" required>
-		</div>
+        <div>
+            <label >id</label>
+            <input type="text" name="id" required>
+        </div>
+        <div>
+            <label>title</label>
+            <input type="text" name="title" required>
+        </div>
+        <div>
+            <label>Course Number</label>
+            <input type="text" name="courseNumber" required>
+        </div>
+        <div>
+            <label>Major ID</label>
+            <input type="text" name="majorID" required>
+        </div>
+        <div>
+            <label>bool</label>
+            <input type="text" name="requiredBool" required>
+        </div>
+        <div>
+            <label>credits</label>
+            <input type="text" name="credits" required>
+        </div>
 
-		<div style="padding-top: 10px;"></div>
-
-		<div>
-			<label>Major</label>
-			<input type="text" name="major" required>
-		</div>
-		<button type="submit">Submit</button>
+		<input type="submit" name = "submit" value = "Submit">
 	</form>	
 
     <?php
-        $courseName = $_POST['courseName'];
-        $courseMajor = $_POST['courseMajor'];
+    
+    if(isset($_POST['submit'])){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $courseNumber = $_POST['courseNumber'];
+        $majorID = $_POST['majorID'];
+        $requiredBool = $_POST['requiredBool'];
+        $credits = $_POST['credits'];
+
+        $result = mysqli_query($connection, "INSERT INTO courses (id, title, courseNumber, majorID, requiredBool, credits) VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')");
+
+        if($result){
+            echo "Success";
+        }else{
+            echo "Fail";
+        }
+    }
+        
+        //$sql = "INSERT INTO courses VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')";
     ?>
-
-
-
-    <h3>Add User</h3>
-    <form action="adminHome.php" method="post">
-		<div>
-			<label >User login</label>
-			<input type="text" name="userID" required>
-		</div>
-
-		<div style="padding-top: 10px;"></div>
-
-		<div>
-			<label>User password</label>
-			<input type="text" name="password" required>
-		</div>
-		<button type="submit">Submit</button>
-	</form>
-
-
-    <?php
-        $userID = $_POST['userID'];
-        $pass = $_POST['password'];
-    ?>
-
-
-    <h3>View Student Schedule</h3>
-    <form action="adminHome.php" method="post">
-        <select name = 'option-selected'>
-            <option value = "Caleb">Caleb Greenfield</option>
-        </select>
-		
-        <button type = "submit">Submit</button>
-	</form>
-
-    <div class = 'display'>
-        <?php
-            $userID = $_SESSION['userID'];
-            $semester = $_POST['option-selected'];
-
-            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.grade, SS.status 
-                        FROM Courses C 
-                        INNER JOIN  courseSchedule CS on CS.courseID = C.id 
-                        INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
-                        WHERE SS.studentID = $userID 
-                        AND CS.semester = '$semester'";
-
-            $result = mysqli_query($connection, $select);
-            $count = mysqli_num_rows($result);
-            echo "<strong> $semester </strong>";
-            echo "<table><tr>";
-            $flag = true;
-            while($row = mysqli_fetch_array($result)){
-                while($flag){
-                    echo "<th>Course Number</th>
-                    <th>Course Name</th>
-                    <th>Date and Time</th>
-                    <th>Location</th>
-                    </tr>";
-                    $flag = false;
-                }
-                
-                echo "<tr>";
-                echo "<th> $row[0]</th>";
-                echo "<th> $row[1]</th>";
-                echo "<th> $row[2]</th>";
-                echo "<th> $row[3]</th>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        ?>
-    </div>
-
 
 
     <form action="logout.php" method="post">
