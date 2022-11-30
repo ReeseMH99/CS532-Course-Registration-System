@@ -9,7 +9,7 @@ a:link.sub {
     margin-right: 20px;
     color: black;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 a:visited.sub {
@@ -17,8 +17,9 @@ a:visited.sub {
 }
   
 a:hover.sub {
-    color: gray;
+    color: rgb(243, 135, 135);
 }
+
 
 .loginPage{
 	

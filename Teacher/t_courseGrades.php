@@ -7,6 +7,7 @@ if(!isset($_SESSION['username'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
+
 ?>
 
 <!DOCTYPE html> 
@@ -30,6 +31,8 @@ if(!isset($_SESSION['username'])){
         <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a>
         <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
+    <div onclick = "myFunction()"> Print Grade Report
+        <span id = "GradeReport">
     </hr>
     <hr>
     

@@ -15,6 +15,40 @@ if(!isset($_SESSION['userID'])){
 ?>
 
 <!DOCTYPE html> 
+<style>
+.headers{
+    color: rgb(0, 0, 0);
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: x-large;
+	margin: 10px;
+	padding: 10px; 
+}
+.studentName{
+    color: rgb(175, 8, 8);
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: xx-large;
+	margin: 10px;
+	padding: 10px; 
+}
+.logout{
+    background-color: rgb(175, 8, 8);
+	color: rgb(249, 249, 250);
+	border: 2px solid #837f7f;
+	border-radius: 12px;
+	font-size: large;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	padding: auto;
+	width: 100px;
+	text-align: center;
+	text-decoration: dashed;
+	margin: 10px;
+	padding: 10px;
+}
+.logout:hover{
+    color: grey;
+}
+
+</style>
 <html lang="en-us"> 
 <head>
     <meta charset="UTF-8">
@@ -25,8 +59,8 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3><?php echo $_SESSION['firstName'];?></h3>
-    <h1>Student Record</h1>
+    <h3 class = "studentName"><?php echo $_SESSION['firstName'];?></h3>
+    <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
         <a href="../studentHome.php" class = 'sub'>Home</a>
@@ -57,7 +91,7 @@ if(!isset($_SESSION['userID'])){
 
     ?>
 
-    <h2>Personal Information</h2>
+    <h2 class = "headers">Personal Information</h2>
     <div>
         <ul>
             <li class = 'info'><strong>Name:</strong> <?php echo $_SESSION['firstName']; ?> <?php echo $_SESSION['lastName']; ?></li>
@@ -71,7 +105,7 @@ if(!isset($_SESSION['userID'])){
 
     </div>
 
-    <h2>Current Courses</h2>
+    <h2 class = "headers" >Current Courses</h2>
     
     <div class = 'display'>
         <?php
@@ -107,7 +141,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h2>Past Courses</h2>
+    <h2 class = "headers">Past Courses</h2>
 
     <div class = 'display'>
         <?php

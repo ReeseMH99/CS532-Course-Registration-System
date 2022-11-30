@@ -14,6 +14,40 @@ if(!isset($_SESSION['userID'])){
 
 <!DOCTYPE html> 
 <html lang="en-us"> 
+<style>
+.headers{
+    color: rgb(0, 0, 0);
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: x-large;
+	margin: 10px;
+	padding: 10px; 
+}
+.studentName{
+    color: rgb(175, 8, 8);
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: xx-large;
+	margin: 10px;
+	padding: 10px; 
+}
+.logout{
+    background-color: rgb(175, 8, 8);
+	color: rgb(249, 249, 250);
+	border: 2px solid #837f7f;
+	border-radius: 12px;
+	font-size: large;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	padding: auto;
+	width: 100px;
+	text-align: center;
+	text-decoration: dashed;
+	margin: 10px;
+	padding: 10px;
+}
+.logout:hover{
+    color: grey;
+}
+
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,8 +57,8 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3><?php echo $_SESSION['firstName'];?></h3>
-    <h1>Course Grades</h1>
+    <h3 class = "studentName"><?php echo $_SESSION['firstName'];?></h3>
+    <h1 class ="headers">Course Grades</h1>
     <hr>
     <div style="text-align:center">
         <a href="../studentHome.php" class = 'sub'>Home</a>
@@ -37,7 +71,7 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-    <h2>Grades by Semester</h2>
+    <h2 class = "headers" >Grades by Semester</h2>
     <form action="s_courseGrades.php" method="post">
         <select name="option-selected">
             <option value="SP22">Spring 2022</option>
@@ -87,6 +121,44 @@ if(!isset($_SESSION['userID'])){
                 echo "</tr>";
             }
             echo "</table>";
+
+            function fullReport(){
+                $userID = $_SESSION['userID'];
+
+              $connection = new mysqli($servername,$userID,$password,$database);
+
+              $sql = "SELECT * FROM studentschedule";
+              $result = $connection->query($sql);
+              $flag = true;
+                while($row = mysqli_fetch_array($result)){
+              
+                  while($flag){
+                    echo "<th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                    </tr>";
+                    $flag = false;
+               }
+              
+                echo "<tr>";
+                echo "<th> $row[0]</th>";
+                echo "<th> $row[1]</th>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[3]</th>";
+                echo "<th> $row[4]</th>";
+                echo "<th> $row[5]</th>";
+                echo "</tr>";
+           }
+              echo "</table>";
+           
+           
+           
+                
+            }
+            
         ?>
     </div>
 
