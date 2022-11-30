@@ -2,6 +2,9 @@
 session_start();
 // adminHome.php
 
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -67,6 +70,8 @@ if(!isset($_SESSION['userID'])){
 	</form>	
 
     <?php
+    
+    if(isset($_POST['submit'])){
         $id = $_POST['id'];
         $title = $_POST['title'];
         $courseNumber = $_POST['courseNumber'];
@@ -74,7 +79,16 @@ if(!isset($_SESSION['userID'])){
         $requiredBool = $_POST['requiredBool'];
         $credits = $_POST['credits'];
 
-        $sql = "INSERT INTO courses VALUES ('id', 'title', 'courseNumber', 'majorID', 'requiredBool', 'credits')";
+        $result = mysqli_query($connection, "INSERT INTO courses (id, title, courseNumber, majorID, requiredBool, credits) VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')");
+
+        if($result){
+            echo "Success";
+        }else{
+            echo "Fail";
+        }
+    }
+        
+        //$sql = "INSERT INTO courses VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')";
     ?>
 
 
