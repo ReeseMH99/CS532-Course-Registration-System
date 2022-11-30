@@ -3,7 +3,7 @@ session_start();
 // adminHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
@@ -36,6 +36,8 @@ if(!isset($_SESSION['username'])){
     <h2>Welcome <?php echo $_SESSION['username'];?></h2>
     
 
+
+
     <h3>Insert Course</h3>
     <form action="adminHome.php" method="post">
 		<div>
@@ -57,7 +59,77 @@ if(!isset($_SESSION['username'])){
         $courseMajor = $_POST['courseMajor'];
     ?>
 
-    <h1><?php echo $courseName;?></h1>
+
+
+    <h3>Add User</h3>
+    <form action="adminHome.php" method="post">
+		<div>
+			<label >User login</label>
+			<input type="text" name="userID" required>
+		</div>
+
+		<div style="padding-top: 10px;"></div>
+
+		<div>
+			<label>User password</label>
+			<input type="text" name="password" required>
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+
+
+    <?php
+        $userID = $_POST['userID'];
+        $pass = $_POST['password'];
+    ?>
+
+
+    <h3>View Student Schedule</h3>
+    <form action="adminHome.php" method="post">
+        <select name = 'option-selected'>
+            <option value = "Caleb">Caleb Greenfield</option>
+        </select>
+		
+        <button type = "submit">Submit</button>
+	</form>
+
+    <div class = 'display'>
+        <?php
+            $userID = $_SESSION['userID'];
+            $semester = $_POST['option-selected'];
+
+            $select = "SELECT C.courseNumber, C.title, CS.dateTime, CS.location, SS.grade, SS.status 
+                        FROM Courses C 
+                        INNER JOIN  courseSchedule CS on CS.courseID = C.id 
+                        INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
+                        WHERE SS.studentID = $userID 
+                        AND CS.semester = '$semester'";
+
+            $result = mysqli_query($connection, $select);
+            $count = mysqli_num_rows($result);
+            echo "<strong> $semester </strong>";
+            echo "<table><tr>";
+            $flag = true;
+            while($row = mysqli_fetch_array($result)){
+                while($flag){
+                    echo "<th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Date and Time</th>
+                    <th>Location</th>
+                    </tr>";
+                    $flag = false;
+                }
+                
+                echo "<tr>";
+                echo "<th> $row[0]</th>";
+                echo "<th> $row[1]</th>";
+                echo "<th> $row[2]</th>";
+                echo "<th> $row[3]</th>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        ?>
+    </div>
 
 
 

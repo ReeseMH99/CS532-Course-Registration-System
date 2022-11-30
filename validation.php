@@ -56,8 +56,6 @@ if($countStudent == 1){
 	$_SESSION['lastName'] = $lastName;
 	$_SESSION['phone'] = $phone;
 	$_SESSION['doB'] = $doB;
-
-
 	header('location:studentHome.php');   // take user to homepage 
 
 }elseif($countTeacher == 1){

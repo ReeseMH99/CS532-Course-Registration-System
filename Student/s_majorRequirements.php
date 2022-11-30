@@ -38,15 +38,20 @@ if(!isset($_SESSION['userID'])){
     <hr>
     
     <h2>Search Requirements by Major</h2>
-    <form action="s_majorRequirements.php" method="post">
-        <select name="option-selected">
-            <option value="1">Computer Science</option>
-            <option value="2">Biology</option>
-            <option value="3">Statistics</option>
-            <option value="4">Math</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <?php
+        $select = "SELECT id, title 
+                    FROM Majors";
+        $result = mysqli_query($connection, $select);
+        echo "<form action='s_majorRequirements.php' method='post'>
+                <select name='option-selected'>";
+        $row = mysqli_fetch_array($result); 
+        while($row = mysqli_fetch_array($result)){
+            echo "<option value=$row[0]>$row[1]</option>";
+        }
+        echo "      </select>
+                <button type='submit'>Submit</button>
+            </form>";
+    ?>
     
     <div class = 'display'>
         <?php
@@ -54,42 +59,13 @@ if(!isset($_SESSION['userID'])){
             $select = "SELECT C.courseNumber, C.title
                          FROM Courses C 
                          INNER JOIN  majorRequirements MR on MR.courseID = C.id 
-                         WHERE MR.majorID = $majorSearch;";
+                         WHERE MR.majorID = $majorSearch";
             //$select2 = "SELECT $select FROM courses WHERE requiredBool = 1"
             $result = mysqli_query($connection, $select);	
             echo "<table><tr><th>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<th> $row[0]</th>";
-                echo "<th> $row[1]</th>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            
-        
-        ?>
-    </div>
-
-    <h2>Search Outline by Major</h2>
-    <form action="s_majorRequirements.php" method="post">
-        <select name="option-selected">
-            <option value="1">Computer Science</option>
-            <option value="2">Biology</option>
-            <option value="3">Statistics</option>
-            <option value="4">Math</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    
-    <div class = 'display'>
-        <?php
-            $majorSearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
-            $result = mysqli_query($connection, $select);	
-            echo "<table><tr><th>";
-            while($row = mysqli_fetch_array($result)){
-                echo "<tr>";
-                echo "<th> $row[2]</th>";
                 echo "<th> $row[1]</th>";
                 echo "</tr>";
             }
