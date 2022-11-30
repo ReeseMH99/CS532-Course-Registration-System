@@ -3,7 +3,7 @@ session_start();
 // studentHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }

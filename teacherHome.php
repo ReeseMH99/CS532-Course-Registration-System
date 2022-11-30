@@ -23,6 +23,7 @@ if(!isset($_SESSION['userID'])){
     <h1>Teacher Home</h1>
     <hr>
     <div style="text-align:center">
+        <a href="./teacherHome.php"  style = "color: red" class = 'sub'>Home</a>
         <a href="./Teacher/t_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./Teacher/t_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./Teacher/t_courseRegistration.php" class = 'sub'>Course Registration</a>
@@ -33,7 +34,7 @@ if(!isset($_SESSION['userID'])){
 
     <hr>
     </hr>
-    <h2>Welcome <?php echo $_SESSION['username'];?></h2>
+    <h2>Welcome <?php echo $_SESSION['firstName'];?></h2>
 
     <form action="logout.php" method="post">
         <button type="submit">Logout</button>
