@@ -16,18 +16,19 @@ if(!isset($_SESSION['userID'])){
 ?>
 
 <!DOCTYPE html> 
+
 <html lang="en-us"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student: Student Record</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3><?php echo $_SESSION['firstName'];?></h3>
-    <h1>Student Record</h1>
+    <h3 class = "studentName"><?php echo $_SESSION['firstName'];?></h3>
+    <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
         <a href="../studentHome.php" class = 'sub'>Home</a>
@@ -57,7 +58,7 @@ if(!isset($_SESSION['userID'])){
 
     ?>
 
-    <h2>Personal Information</h2>
+    <h2 class = "headers">Personal Information</h2>
     <div>
         <ul>
             <li class = 'info'><strong>Name:</strong> <?php echo $_SESSION['firstName']; ?> <?php echo $_SESSION['lastName']; ?></li>
@@ -71,7 +72,7 @@ if(!isset($_SESSION['userID'])){
 
     </div>
 
-    <h2>Current Courses</h2>
+    <h2 class = "headers" >Current Courses</h2>
     
     <div class = 'display'>
         <?php
@@ -107,7 +108,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h2>Past Courses</h2>
+    <h2 class = "headers">Past Courses</h2>
 
     <div class = 'display'>
         <?php

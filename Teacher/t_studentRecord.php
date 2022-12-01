@@ -18,14 +18,14 @@ if(!isset($_SESSION['userID'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Teacher: Student Records</title>
-        <link rel="stylesheet" href="../style.css">
+    <title>Teacher: Student Record</title>
+    <link rel="stylesheet" href="./styleTeacher.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Teacher</h3>
-    <h1>Student Records</h1>
+    <h3 class = "studentName">Teacher</h3>
+    <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
         <a href="../teacherHome.php" class = 'sub'>Home</a>
@@ -72,7 +72,7 @@ if(!isset($_SESSION['userID'])){
     
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button class = "logout" type="submit">Logout</button>
     </form>
 
 </body>

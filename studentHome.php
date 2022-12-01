@@ -10,17 +10,19 @@ if(!isset($_SESSION['userID'])){
 ?>
 
 <!DOCTYPE html> 
+
+
 <html lang="en-us"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title >Student Home</title>
+    <link rel="stylesheet" href="./Student/styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
-<body>
+<body class = "studentBody">
     <!--Elements visible to users go here-->
-    <h1>Student Home</h1>
+    <h1 class = "studentName">Student Home</h1>
 
     <hr>
     <div style="text-align:center">
@@ -37,9 +39,13 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <h2>Welcome, <?php echo $_SESSION['firstName'];?>!</h2>
 
+    <h2 class = "headers" style = "text-align: center;" >Welcome <?php echo $_SESSION['firstName'];?></h2>
+    <div> 
+        <img src = "studentHome.jpg" style = "width:1200px;height:400px;display: block;margin-left: auto;margin-right: auto;">
+    </div>
 
     <form action="logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button class ="logout" type="submit">Logout</button>
     </form>
 
 </body>
