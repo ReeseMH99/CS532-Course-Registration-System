@@ -10,6 +10,7 @@ if(!isset($_SESSION['userID'])){
 	header('location:login.html');
 }
 
+$userID = $_POST['view'];
 
 ?>
 
@@ -60,7 +61,7 @@ if(!isset($_SESSION['userID'])){
             <?php
                 $userID = $_POST["view"];
 
-                $select = "SELECT C.courseNumber, C.title, SS.grade, SS.status 
+                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade 
                             FROM Courses C 
                             INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                             INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
@@ -80,7 +81,9 @@ if(!isset($_SESSION['userID'])){
                     echo "<tr>";
                     echo "<th> $row[0]</th>"; //courseNumber
                     echo "<th> $row[1]</th>"; //title
-                    $currentGrade = $row[2];
+                    echo "<th> $row[2]</th>"; //status
+
+                    $currentGrade = $row[3];
                     $allOptionsStr = '
                         <option value="A">A</option>
                         <option value="A-">A-</option>
@@ -108,11 +111,11 @@ if(!isset($_SESSION['userID'])){
                                 <select name="option-selected">' . 
                                     $optionsFormat .
                                 '</select>
+                                <button type = "submit">Submit Grade Changes</button>
                             </form>'
                             . "</td>";
                     "</th>"; //grade $row[2]
 
-                    echo "<th> $row[3]</th>"; //status
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -125,7 +128,7 @@ if(!isset($_SESSION['userID'])){
             <?php
                 $userID = $_POST["view"];
 
-                $select = "SELECT C.courseNumber, C.title, SS.grade, SS.status 
+                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade
                             FROM Courses C 
                             INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                             INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
@@ -138,14 +141,18 @@ if(!isset($_SESSION['userID'])){
                 echo "<table><tr>
                 <th>Course Number</th>
                 <th>Course Name</th>
-                <th>Grade</th>
                 <th>Status</th>
+                <th>Grade</th>
+                <th>Change Grade</th>
                 </tr>";
+
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
                     echo "<th> $row[0]</th>";
                     echo "<th> $row[1]</th>";
-                    $currentGrade = (string) "\"" . $row[2] . "\"";
+                    echo "<th> $row[2]</th>";
+
+                    $currentGrade = (string) "\"" . $row[3] . "\"";
                     $allOptionsStr = '
                         <option value="A">A</option>
                         <option value="A-">A-</option>
@@ -169,31 +176,27 @@ if(!isset($_SESSION['userID'])){
                         $optionsFormat = substr_replace($allOptionsStr, ' selected', $gradePos+4, 0);
                     }
                     echo "<th>" .
-                            '<form action="t_updateGrades.php" method="post" id="gradesform">
-                                <select name="option-selected[]">' . 
+                            '<form action="t_updateGrade.php" method="post" id="gradesform">
+                                <select name="option-selected">' . 
                                     $optionsFormat .
                                 '</select>
-                            </form>'
-                            . "</td>";
-                    "</th>"; //grade $row[2]
-                    echo "<th> $row[3]</th>";
+                                </th>
+                                <th>
+                                <button type="submit">Submit Grade Changes</button>
+                                </th>
+                            </form>             
+                            '. "</th>"; //grade $row[2]
                     echo "</tr>";
+        
+                    
                 }
                 echo "</table>";
             ?>
     </div>
 
 <?php
-    $newGrade = $_POST['option-selected'];
-    echo "<form action='t_updateGrade.php' method = 'post'>
-    <button type = 'submit' form = 'gradesform' name ='grade' value=$newGrade>Submit Grade Changes</button>
-</form>
-    <script>
-        document.forms[1].submit();
-    </script>";
-
+    $userID = $_POST['view'];
 ?>
-
 
 <form action="./t_courseGrades.php" method="post">
     <button type="submit">Back</button>
