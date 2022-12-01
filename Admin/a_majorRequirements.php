@@ -3,7 +3,7 @@ session_start();
 // studentHome.php
 
 //if variable not set
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
 	header('location:login.html');
 }
@@ -15,13 +15,13 @@ if(!isset($_SESSION['username'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Admin: Major Requirements</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./styleAdmin.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Admin</h3>
-    <h1>Major Requirements</h1>
+    <h3 class = "studentName">Admin</h3>
+    <h1 class = "headers" >Major Requirements</h1>
     <hr>
     <div style="text-align:center">
         <a href="../adminHome.php" class = 'sub'>Home</a>
@@ -37,7 +37,7 @@ if(!isset($_SESSION['username'])){
     
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button class = "logout" type="submit">Logout</button>
     </form>
 
 </body>

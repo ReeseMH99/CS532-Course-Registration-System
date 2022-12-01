@@ -18,13 +18,13 @@ if(!isset($_SESSION['userID'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Student: Major Requirements</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3><?php echo $_SESSION['firstName'];?></h3>
-    <h1>Major Requirements</h1>
+    <h3 class = "studentName"><?php echo $_SESSION['firstName'];?></h3>
+    <h1 class = "headers">Major Requirements</h1>
     <hr>
     <div style="text-align:center">
         <a href="../studentHome.php" class = 'sub'>Home</a>
@@ -37,7 +37,7 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-    <h2>Search Requirements by Major</h2>
+    <h2 class = "headers" >Search Requirements by Major</h2>
     <form action="s_majorRequirements.php" method="post">
         <select name="option-selected">
             <option value="1">Computer Science</option>
@@ -70,7 +70,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h2>Search Outline by Major</h2>
+    <h2 class = "headers">Search Outline by Major</h2>
     <form action="s_majorRequirements.php" method="post">
         <select name="option-selected">
             <option value="1">Computer Science</option>
@@ -100,7 +100,7 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button class = "logout" type="submit">Logout</button>
     </form>
 
 </body>

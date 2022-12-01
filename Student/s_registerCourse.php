@@ -26,7 +26,7 @@ $courseTitle = $array[0];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Register</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>

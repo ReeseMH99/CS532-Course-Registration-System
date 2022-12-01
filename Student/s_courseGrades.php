@@ -14,45 +14,12 @@ if(!isset($_SESSION['userID'])){
 
 <!DOCTYPE html> 
 <html lang="en-us"> 
-<style>
-.headers{
-    color: rgb(0, 0, 0);
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	font-size: x-large;
-	margin: 10px;
-	padding: 10px; 
-}
-.studentName{
-    color: rgb(175, 8, 8);
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	font-size: xx-large;
-	margin: 10px;
-	padding: 10px; 
-}
-.logout{
-    background-color: rgb(175, 8, 8);
-	color: rgb(249, 249, 250);
-	border: 2px solid #837f7f;
-	border-radius: 12px;
-	font-size: large;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	padding: auto;
-	width: 100px;
-	text-align: center;
-	text-decoration: dashed;
-	margin: 10px;
-	padding: 10px;
-}
-.logout:hover{
-    color: grey;
-}
 
-</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Student: Course Grades</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
@@ -162,7 +129,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h4>Print Reports</h4>
+    <h4 class = "headers" >Print Reports</h4>
 
     <div>
         <ul>
@@ -173,7 +140,7 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <form action="../logout.php" method="post">
-        <button style= "margin-bottom: 20px" type="submit">Logout</button>
+        <button class = "logout" type="submit">Logout</button>
     </form>
 
 </body>

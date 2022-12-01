@@ -11,57 +11,18 @@ if(!isset($_SESSION['userID'])){
 
 <!DOCTYPE html> 
 
-<style>
-.studentTitle{
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	color: rgb(175, 8, 8) ;
-	font-size: xx-large;
-	margin: 10px;
-	padding: 10px;
-}
-.welcome{
-    text-align: center;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	color: black ;
-	font-size: xx-large;
-	margin: 10px;
-	padding: 10px;
-}
-.logout{
-    background-color: rgb(175, 8, 8);
-	color: rgb(249, 249, 250);
-	border: 2px solid #837f7f;
-	border-radius: 12px;
-	font-size: large;
-	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	padding: auto;
-	width: 100px;
-	text-align: center;
-	text-decoration: dashed;
-	margin: 10px;
-	padding: 10px;
-}
-.studentBody{
-   background-image: url("homepage.jpg");
-background-size: fill;
-}
-.logout:hover{
-    color: grey;
-}
 
-
-</style>
 <html lang="en-us"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title >Student Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Student/styleStudent.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body class = "studentBody">
     <!--Elements visible to users go here-->
-    <h1 class = "studentTitle">Student Home</h1>
+    <h1 class = "studentName">Student Home</h1>
 
     <hr>
     <div style="text-align:center">
@@ -76,8 +37,10 @@ background-size: fill;
 
     <hr>
     </hr>
-    <h2 class = "welcome" >Welcome <?php echo $_SESSION['firstName'];?></h2>
-
+    <h2 class = "headers" style = "text-align: center;" >Welcome <?php echo $_SESSION['firstName'];?></h2>
+    <div> 
+        <img src = "studentHome.jpg" style = "width:1200px;height:400px;display: block;margin-left: auto;margin-right: auto;">
+    </div>
 
     <form action="logout.php" method="post">
         <button class ="logout" type="submit">Logout</button>
