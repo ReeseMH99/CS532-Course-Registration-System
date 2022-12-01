@@ -1,6 +1,5 @@
 <?php
 session_start();
-require 't_viewGrades.php';
 
 $connection = mysqli_connect('localhost', 'root', 'root');
 mysqli_select_db($connection, 'CourseRegDB2');
