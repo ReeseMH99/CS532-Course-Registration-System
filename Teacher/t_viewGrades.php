@@ -11,6 +11,10 @@ if(!isset($_SESSION['userID'])){
 }
 
 $userID = $_POST['view'];
+$select = "SELECT firstName FROM users WHERE userID=$userID";
+$result = mysqli_query($connection, $select);
+$row = mysqli_fetch_array($result);
+$firstName = $row[0];
 
 ?>
 
@@ -25,7 +29,7 @@ $userID = $_POST['view'];
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Grades for <?php echo $_POST["view"]; ?></h3>
+    <h3>Grades for <?php echo $firstName; ?></h3>
     <h1>Course Grades</h1>
     <hr>
     <div style="text-align:center">
@@ -61,7 +65,7 @@ $userID = $_POST['view'];
             <?php
                 $userID = $_POST["view"];
 
-                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade 
+                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade, SS.studentID, SS.scheduleID
                             FROM Courses C 
                             INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                             INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
@@ -74,8 +78,8 @@ $userID = $_POST['view'];
                 echo "<table><tr>
                 <th>Course Number</th>
                 <th>Course Name</th>
-                <th>Grade</th>
                 <th>Status</th>
+                <th>Grade</th>
                 </tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
@@ -107,11 +111,15 @@ $userID = $_POST['view'];
                         $optionsFormat = substr_replace($allOptionsStr, ' selected', $gradePos+3, 0);
                     }
                     echo "<th>" .
-                            '<form action="t_viewGrades.php" method="post" id="gradesform">
+                            '<form action="t_updateGrade.php" method="post" id="gradesform">
                                 <select name="option-selected">' . 
                                     $optionsFormat .
                                 '</select>
-                                <button type = "submit">Submit Grade Changes</button>
+                                <th>
+                                    <input type="hidden" name="user_id" value="' . $row[4] . '"></input>
+                                    <input type="hidden" name="sched_id" value="' . $row[5]. '"</input>
+                                    <button type = "submit">Submit Grade Changes</button>
+                                </th>
                             </form>'
                             . "</td>";
                     "</th>"; //grade $row[2]
@@ -128,7 +136,7 @@ $userID = $_POST['view'];
             <?php
                 $userID = $_POST["view"];
 
-                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade
+                $select = "SELECT C.courseNumber, C.title, SS.status, SS.grade, SS.studentID, SS.scheduleID
                             FROM Courses C 
                             INNER JOIN  courseSchedule CS on CS.courseID = C.id 
                             INNER JOIN studentSchedule SS on CS.scheduleID = SS.scheduleID 
@@ -143,14 +151,13 @@ $userID = $_POST['view'];
                 <th>Course Name</th>
                 <th>Status</th>
                 <th>Grade</th>
-                <th>Change Grade</th>
                 </tr>";
 
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
-                    echo "<th> $row[0]</th>";
-                    echo "<th> $row[1]</th>";
-                    echo "<th> $row[2]</th>";
+                    echo "<th> $row[0]</th>"; // course num
+                    echo "<th> $row[1]</th>"; // course title
+                    echo "<th> $row[2]</th>"; // course status
 
                     $currentGrade = (string) "\"" . $row[3] . "\"";
                     $allOptionsStr = '
@@ -182,10 +189,12 @@ $userID = $_POST['view'];
                                 '</select>
                                 </th>
                                 <th>
+                                <input type="hidden" name="user_id" value="' . $row[4] . '"></input>
+                                <input type="hidden" name="sched_id" value="' . $row[5]. '"</input>
                                 <button type="submit">Submit Grade Changes</button>
                                 </th>
                             </form>             
-                            '. "</th>"; //grade $row[2]
+                            '. "</th>"; //grade $row[3]
                     echo "</tr>";
         
                     
@@ -193,10 +202,6 @@ $userID = $_POST['view'];
                 echo "</table>";
             ?>
     </div>
-
-<?php
-    $userID = $_POST['view'];
-?>
 
 <form action="./t_courseGrades.php" method="post">
     <button type="submit">Back</button>
