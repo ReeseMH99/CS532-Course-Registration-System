@@ -24,13 +24,13 @@ $firstName = $row[0];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Teacher: Course Grades</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./styleTeacher.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3>Grades for <?php echo $firstName; ?></h3>
-    <h1>Course Grades</h1>
+    <h3 class = "headers">Grades for <?php echo $firstName; ?></h3>
+    <h1 class = "headers">Course Grades</h1>
     <hr>
     <div style="text-align:center">
         <a href="../teacherHome.php" class = 'sub'>Home</a>
@@ -59,7 +59,7 @@ $firstName = $row[0];
 
     ?>
 
-    <h2>Fall 2022</h2>
+    <h2 class = "headers">Fall 2022</h2>
         
         <div class = 'display'>
             <?php
@@ -130,7 +130,7 @@ $firstName = $row[0];
             ?>
         </div>
 
-    <h2>Spring 2022</h2>
+    <h2 class = "headers">Spring 2022</h2>
 
         <div class = 'display'>
             <?php
@@ -204,11 +204,11 @@ $firstName = $row[0];
     </div>
 
 <form action="./t_courseGrades.php" method="post">
-    <button type="submit">Back</button>
+    <button style = "margin-top: 15px"type="submit">Back</button>
 </form>
 
 <form action="../logout.php" method="post">
-    <button type="submit">Logout</button>
+    <button class = "logout"type="submit">Logout</button>
 </form>
 
 </body>

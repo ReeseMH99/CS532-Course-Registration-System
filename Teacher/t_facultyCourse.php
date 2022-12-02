@@ -36,8 +36,8 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-    <h2>Faculty and Course Information</h2>
-    <h4>Query by Faculty, Course, and Semester</h4>
+    <h2 class = "headers">Faculty and Course Information</h2>
+    <h4 class = "headers">Query by Faculty, Course, and Semester</h4>
 
 
     <?php

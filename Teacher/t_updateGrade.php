@@ -18,13 +18,13 @@ if(!isset($_SESSION['userID'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Teacher: Course Grades</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="./styleTeacher.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
 
-    <h1>Course Grades</h1>
+    <h1 class = "headers">Course Grades</h1>
     <hr>
     <div style="text-align:center">
         <a href="../teacherHome.php" class = 'sub'>Home</a>
@@ -45,10 +45,11 @@ if(!isset($_SESSION['userID'])){
         $select = "UPDATE studentschedule SET grade='$gradeUpdate' WHERE studentID='$user_ID' AND scheduleID='$sched_ID'";
         
         if ($connection->query($select) === TRUE) {
-            echo"Student grade updated successfully";
+            echo "<h2> Student grade updated successfully! </h2>";
+            //echo"Student grade updated successfully!";
            echo '<form action="t_viewGrades.php" method="post">
                     <input type="hidden" name="view" value="'.$user_ID.'">
-                    <button type="submit">Back</button>
+                    <button style = "margin-top: 15px" type="submit">Back</button>
                 </form>';
         } else {
             echo "Error updating record: " . $connection->error;

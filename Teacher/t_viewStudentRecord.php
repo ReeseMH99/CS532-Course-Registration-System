@@ -20,13 +20,13 @@ if(!isset($_SESSION['userID'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student: Student Record</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./styleTeacher.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3><?php echo $_SESSION['firstName'];?></h3>
-    <h1>Student Record</h1>
+    <h3 class = "studentName">Teacher</h3>
+    <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
         <a href="../teacherHome.php" class = 'sub'>Home</a>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['userID'])){
     $result = mysqli_query($connection, $select);
     $row = mysqli_fetch_array($result);
     ?>
-    <h2>Personal Information</h2>
+    <h2 class = "headers">Personal Information</h2>
     <div>
         <ul>
             <li class = 'info'><strong>Name:</strong> <?php echo $row['firstName']; ?> <?php echo $row['lastName']; ?></li>
@@ -76,7 +76,7 @@ if(!isset($_SESSION['userID'])){
 
     </div>
 
-    <h2>Current Courses</h2>
+    <h2 class = "headers">Current Courses</h2>
     
     <div class = 'display'>
         <?php
@@ -112,7 +112,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h2>Past Courses</h2>
+    <h2 class = "headers">Past Courses</h2>
 
     <div class = 'display'>
         <?php
@@ -150,20 +150,12 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h4>Print Report</h4>
-
-    <div>
-        <ul>
-            <li class = 'currcourse'>2 print report buttons here</li>
-        </ul> 
-
-    </div>
     <form action="./t_studentRecord.php" method="post">
-    <button type="submit">Back</button>
+    <button  style="margin-top: 15px"  type="submit">Back</button>
     </form>
 
     <form action="../logout.php" method="post">
-        <button type="submit">Logout</button>
+        <button class = "logout" style="margin-top: 15px" type="submit">Logout</button>
     </form>
 
 </body>
