@@ -1,7 +1,8 @@
 <?php
 session_start();
 // studentHome.php
-
+$connection = mysqli_connect('localhost', 'root', 'root');
+mysqli_select_db($connection, 'CourseRegDB2');
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -26,6 +27,7 @@ if(!isset($_SESSION['userID'])){
     <div style="text-align:center">
         <a href="../adminHome.php" class = 'sub'>Home</a>
         <a href="./a_studentRecord.php" class = 'sub'>Student Record</a>
+        <a href="./a_courseGrades.php"  style = "color: red" class = 'sub'>Course Grades</a>
         <a href="./a_courseRegistration.php" class = 'sub'>Course Registration</a>
         <a href="./a_majorRequirements.php" class = 'sub'>Major Requirements</a>
         <a href="./a_facultyCourse.php" class = 'sub'>Faculty Course Information</a>

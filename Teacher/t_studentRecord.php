@@ -31,14 +31,14 @@ if(!isset($_SESSION['userID'])){
         <a href="../teacherHome.php" class = 'sub'>Home</a>
         <a href="./t_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./t_courseGrades.php" class = 'sub'>Course Grades</a>
-        <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a>
-        <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <!-- <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
+        <!-- <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->
         <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
     </hr>
     <hr>
     
-    <h2>All Students</h2>
+    <h2 class = "headers">All Students</h2>
     
     <?php
         // show all student names and IDs

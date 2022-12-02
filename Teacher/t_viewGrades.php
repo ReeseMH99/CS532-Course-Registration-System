@@ -36,8 +36,8 @@ $firstName = $row[0];
         <a href="../teacherHome.php" class = 'sub'>Home</a>
         <a href="./t_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./t_courseGrades.php" style = "color: red" class = 'sub'>Course Grades</a>
-        <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a>
-        <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <!-- <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
+        <!-- <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->
         <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
     </hr>

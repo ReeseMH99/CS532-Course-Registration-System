@@ -45,7 +45,7 @@ if(!isset($_SESSION['userID'])){
             <option value="FA22">Fall 2022</option>
             <option value="SP23">Spring 2023</option>
         </select>
-        <button type="submit">Submit</button>
+        <button style="margin-bottom: 15px" type="submit">Submit</button>
     </form>
 
     <div class = 'display'>
@@ -129,12 +129,10 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h4 class = "headers" >Print Reports</h4>
+    <h4 class = "headers" >Grade Sheet</h4>
 
     <div>
-    <form action="s_courseGrades.php" method="post" name="test">
-        <button type="submit">Grade Sheet</button>
-    </form>
+    
         <div class = 'display'>
         <?php
 

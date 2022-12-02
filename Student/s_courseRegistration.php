@@ -49,7 +49,7 @@ $userID = $_SESSION['userID'];
             <option value="3">Statistics</option>
             <option value="4">Math</option>
         </select>
-        <button type="submit">Submit</button>
+        <button style="margin-bottom: 15px" type="submit">Submit</button>
     </form>
     
     <div class = 'display'>

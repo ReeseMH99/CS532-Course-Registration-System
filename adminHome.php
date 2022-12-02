@@ -26,6 +26,7 @@ if(!isset($_SESSION['userID'])){
     <h1 class = "studentName">Admin Home</h1>
     <hr>
     <div style="text-align:center">
+        <a href="./adminHome.php"  style = "color: red" class = 'sub'>Home</a>
         <a href="./Admin/a_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./Admin/a_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./Admin/a_courseRegistration.php" class = 'sub'>Course Registration</a>
@@ -36,45 +37,64 @@ if(!isset($_SESSION['userID'])){
 
     <hr>
     </hr>
-    <h2 class = "headers" >Welcome <?php echo $_SESSION['username'];?></h2>
+    <h2 class = "headers" >Welcome! <?php echo $_SESSION['username'];?></h2>
     
 
-    <h3 class = "headers">Insert Course</h3>
+    <h4 class = "headers">Add User</h4>
     <form action="adminHome.php" method="post">
-		<div>
-			<label class = "headers" >Course Name</label>
-			<input type="text" name="courseName" required>
-		</div>
-
-		<div style="padding-top: 10px;"></div>
-
-		<div>
-			<label class = "headers" >Major</label>
-			<input type="text" name="major" required>
-		</div>
-		<button type="submit">Submit</button>
+        <div>
+            <label >UserID</label>
+            <input style="margin-bottom: 5px" type="text" name="userID" required>
+        </div>
+        <div>
+            <label>Email</label>
+            <input style="margin-bottom: 5px" type="text" name="email" required>
+        </div>
+        <div>
+            <label>Password</label>
+            <input style="margin-bottom: 5px" type="text" name="Password" required>
+        </div>
+        <div>
+            <label>First Name</label>
+            <input style="margin-bottom: 5px" type="text" name="firstName" required>
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input style="margin-bottom: 5px" type="text" name="lastName" required>
+        </div>
+        <div>
+            <label>Phone</label>
+            <input style="margin-bottom: 5px" type="text" name="phone" required>
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input style="margin-bottom: 5px" type="text" name="doB" required>
+        </div>
+		<input type="submit" name = "submit" value = "Submit">
 	</form>	
 
     <?php
-    
     if(isset($_POST['submit'])){
-        $id = $_POST['id'];
-        $title = $_POST['title'];
-        $courseNumber = $_POST['courseNumber'];
-        $majorID = $_POST['majorID'];
-        $requiredBool = $_POST['requiredBool'];
-        $credits = $_POST['credits'];
+        $userID = $_POST['userID'];
+        $email = $_POST['email'];
+        $password = $_POST['Password'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $phone = $_POST['phone'];
+        $doB = $_POST['doB'];
 
-        $result = mysqli_query($connection, "INSERT INTO courses (id, title, courseNumber, majorID, requiredBool, credits) VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')");
+        $result = mysqli_query($connection, "INSERT INTO users 
+        (userID, email, `password`, firstName, lastName, phone, doB)
+        VALUES 
+        ('$userID', '$email', '$password', '$firstName', '$lastName', '$phone', '$doB')");
 
-        if($result){
-            echo "Success";
-        }else{
-            echo "Fail";
+        if($result) {
+            echo "Added user successfully";
+        }else {
+            echo "Failed to add user";
         }
     }
-        
-        //$sql = "INSERT INTO courses VALUES ('$id', '$title', '$courseNumber', '$majorID', '$requiredBool', '$credits')";
+
     ?>
 
 

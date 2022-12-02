@@ -36,8 +36,7 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-    <h2 class = "headers">Faculty and Course Information</h2>
-    <h4 class = "headers">Query by faculty name or facultyID</h4>
+    <h4 class = "headers">Query by Faculty Name, Course, and Semester</h4>
 
 
     <?php
@@ -89,7 +88,7 @@ if(!isset($_SESSION['userID'])){
                         <option value='$FA22' selected>Fall 2022</option>
                         <option value='$SP23'>Spring 2023</option>
                     </select>
-                    <button type='submit'>Search</button>
+                    <button style='margin-bottom: 15px' type='submit'>Search</button>
                 </form>";
     ?>
 
@@ -389,7 +388,6 @@ if(!isset($_SESSION['userID'])){
 
         ?>
     </div>
-    <h4 class = "headers">Query by course name or courseID</h4>
     
     <form action="../logout.php" method="post">
         <button class = "logout" type="submit">Logout</button>

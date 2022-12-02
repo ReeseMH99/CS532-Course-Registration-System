@@ -37,9 +37,8 @@ if(!isset($_SESSION['userID'])){
 
     <hr>
     </hr>
-    <h2>Welcome, <?php echo $_SESSION['firstName'];?>!</h2>
 
-    <h2 class = "headers" style = "text-align: center;" >Welcome <?php echo $_SESSION['firstName'];?></h2>
+    <h2 class = "headers" style = "text-align: center;" >Welcome, <?php echo $_SESSION['firstName'];?></h2>
     <div> 
         <img src = "studentHome.jpg" style = "width:1200px;height:400px;display: block;margin-left: auto;margin-right: auto;">
     </div>

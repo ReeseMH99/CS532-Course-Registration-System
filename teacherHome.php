@@ -26,8 +26,8 @@ if(!isset($_SESSION['userID'])){
         <a href="./teacherHome.php"  style = "color: red" class = 'sub'>Home</a>
         <a href="./Teacher/t_studentRecord.php" class = 'sub'>Student Record</a>
         <a href="./Teacher/t_courseGrades.php" class = 'sub'>Course Grades</a>
-        <a href="./Teacher/t_courseRegistration.php" class = 'sub'>Course Registration</a>
-        <a href="./Teacher/t_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <!-- <a href="./Teacher/t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
+        <!-- <a href="./Teacher/t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->
         <a href="./Teacher/t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
     </hr>

@@ -49,7 +49,7 @@ if(!isset($_SESSION['userID'])){
             echo "<option value=$row[0]>$row[1]</option>";
         }
         echo "      </select>
-                <button type='submit'>Submit</button>
+                <button style='margin-bottom: 15px' type='submit'>Submit</button>
             </form>";
     ?>
     
@@ -73,36 +73,7 @@ if(!isset($_SESSION['userID'])){
             
         
         ?>
-    </div>
-
-    <h2 class = "headers">Search Outline by Major</h2>
-    <form action="s_majorRequirements.php" method="post">
-        <select name="option-selected">
-            <option value="1">Computer Science</option>
-            <option value="2">Biology</option>
-            <option value="3">Statistics</option>
-            <option value="4">Math</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    
-    <div class = 'display'>
-        <?php
-            $majorSearch = $_POST['option-selected'];
-            $select = "SELECT * FROM courses WHERE majorID = $majorSearch;";
-            $result = mysqli_query($connection, $select);	
-            echo "<table><tr><th>";
-            while($row = mysqli_fetch_array($result)){
-                echo "<tr>";
-                echo "<th> $row[2]</th>";
-                echo "<th> $row[1]</th>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            
-        
-        ?>
-    </div>
+    </div>    
 
     <form action="../logout.php" method="post">
         <button class = "logout" style="margin-top: 30px" type="submit">Logout</button>

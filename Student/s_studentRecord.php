@@ -151,7 +151,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <h2>Future Courses</h2>
+    <h2 class = "headers">Future Courses</h2>
 
     <div class = 'display'>
         <?php
@@ -227,7 +227,7 @@ if(!isset($_SESSION['userID'])){
     </div>
 
     <form action="../logout.php" method="post">
-        <button type="submit" style="margin-top: 30px" >Logout</button>
+        <button class = "logout" type="submit" style="margin-top: 30px" >Logout</button>
     </form>
 
 </body>
