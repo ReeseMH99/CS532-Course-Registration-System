@@ -34,11 +34,17 @@ if(!isset($_SESSION['userID'])){
         <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a>
         <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
     </div>
-    <div onclick = "myFunction()"> Print Grade Report
-        <span id = "GradeReport">
     </hr>
     <hr>
     
+        <h2 class = "headers"> All Students </h2>
+
+    <?php
+
+        $select = "SELECT * FROM students s INNER JOIN users u ON s.studentID=u.userID";
+        $result = mysqli_query($connection, $select);
+        //echo "$result";
+
 
         echo "<table>
         <tr>
