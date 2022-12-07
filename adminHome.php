@@ -31,7 +31,7 @@ if(!isset($_SESSION['userID'])){
         <a href="./Admin/a_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./Admin/a_courseRegistration.php" class = 'sub'>Course Registration</a>
         <a href="./Admin/a_majorRequirements.php" class = 'sub'>Major Requirements</a>
-        <a href="./Admin/a_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
+        <!-- <a href="./Admin/a_facultyCourse.php" class = 'sub'>Faculty Course Information</a> -->
     </div>
     </hr>
 

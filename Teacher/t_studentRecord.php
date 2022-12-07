@@ -24,12 +24,12 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName">Teacher</h3>
+    <h3 class = "studentName">Teacher: <?php echo $_SESSION['firstName'];?></h3>
     <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
         <a href="../teacherHome.php" class = 'sub'>Home</a>
-        <a href="./t_studentRecord.php" class = 'sub'>Student Record</a>
+        <a href="./t_studentRecord.php" style = "color: red" class = 'sub'>Student Record</a>
         <a href="./t_courseGrades.php" class = 'sub'>Course Grades</a>
         <!-- <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
         <!-- <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->

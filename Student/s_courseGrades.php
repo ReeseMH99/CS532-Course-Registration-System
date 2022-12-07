@@ -167,7 +167,7 @@ if(!isset($_SESSION['userID'])){
                 echo "<th> $row[6]</th>";
                 echo "</tr>";
             }
-            $select2 = "SELECT SS.gradeVal
+            $select2 = "SELECT SS.grade
             FROM studentSchedule SS
             INNER JOIN  courseSchedule CS on CS.scheduleID = SS.scheduleID 
             WHERE SS.studentID = $userID
@@ -175,9 +175,56 @@ if(!isset($_SESSION['userID'])){
             $result2 = mysqli_query($connection, $select2);
             $count = mysqli_num_rows($result2);
             $sum = 0;
+            $value = 0;
             while($row2 = mysqli_fetch_array($result2)){
-                
-                $sum += $row2['gradeVal'];
+
+                if($row2["grade"] == 'A'){
+                    $value = 4.0;
+                    $sum+=$value;
+                }else if($row2["grade"] == 'A-'){
+                    $value = 3.7;
+                    $sum+=$value;
+                }else if($row2["grade"] == 'B+'){
+                    $value = 3.3;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'B'){
+                    $value = 3.0;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'B-'){
+                    $value = 2.7;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'C+'){
+                    $value = 2.3;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'C'){
+                    $value = 2.0;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'C-'){
+                    $value = 1.7;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'D+'){
+                    $value = 1.3;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'D'){
+                    $value = 1.0;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'D-'){
+                    $value = 0.7;
+                    $sum+=$value;
+                    //echo $sum;
+                }else if($row2["grade"] == 'F'){
+                    $value = 0.0;
+                    $sum+=$value;
+                    //echo $sum;
+                }
             }
             $gpa = $sum / $count;
             $gpa_formatted = number_format($gpa, 2);

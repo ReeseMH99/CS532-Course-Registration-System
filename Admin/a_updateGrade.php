@@ -1,9 +1,9 @@
 <?php
 session_start();
-// studentHome.php
 
 $connection = mysqli_connect('localhost', 'root', 'root');
 mysqli_select_db($connection, 'CourseRegDB2');
+
 //if variable not set
 if(!isset($_SESSION['userID'])){
 	//send user to login/registration page
@@ -23,7 +23,8 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName"> Admin: <?php echo $_SESSION['firstName'];?></h3>
+
+    <h3 class = "studentName">Admin: <?php echo $_SESSION['firstName'];?> </h3>
     <h1 class = "headers">Course Grades</h1>
     <hr>
     <div style="text-align:center">
@@ -36,45 +37,29 @@ if(!isset($_SESSION['userID'])){
     </div>
     </hr>
     <hr>
-    
-        <h2 class = "headers"> All Students </h2>
 
     <?php
+        $gradeUpdate = $_POST['option-selected'];
+        $user_ID = $_POST['user_id'];
+        $sched_ID = $_POST['sched_id'];
 
-        $select = "SELECT * FROM students s INNER JOIN users u ON s.studentID=u.userID";
-        $result = mysqli_query($connection, $select);
-        //echo "$result";
-
-
-        echo "<table>
-        <tr>
-            <th>Student ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-        </tr>";
-
-        while($row=mysqli_fetch_array($result)) {
-            echo "<tr>";
-            echo "<td>".$row['studentID']."</td>";
-            echo "<td>".$row['firstName']."</td>";
-            echo "<td>".$row['lastName']."</td>";
-            echo "<td>" . 
-                    '<form action="a_viewGrades.php" method="post"> 
-                        <input type="hidden" name="view" value="'.$row['studentID'].'">
-                        <button type="submit">View Grades</button>
-                    </form>' . "</td>"; // have to update userID to studentID
-            echo "</tr>";
-
+        
+        $select = "UPDATE studentschedule SET grade='$gradeUpdate' WHERE studentID='$user_ID' AND scheduleID='$sched_ID'";
+        
+        if ($connection->query($select) === TRUE) {
+            echo "<h2> Student grade updated successfully! </h2>";
+            //echo"Student grade updated successfully!";
+           echo '<form action="a_viewGrades.php" method="post">
+                    <input type="hidden" name="view" value="'.$user_ID.'">
+                    <button style = "margin-top: 15px" type="submit">Back</button>
+                </form>';
+        } else {
+            echo "Error updating record: " . $connection->error;
         }
-        echo "</table>";
-
-
+        
     ?>
-    
-
-    <form action="../logout.php" method="post">
-        <button class = "logout" type="submit">Logout</button>
-    </form>
-
-</body>
 </html>
+
+
+
+

@@ -21,7 +21,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName">Admin</h3>
+    <h3 class = "studentName">Admin: <?php echo $_SESSION['firstName'];?></h3>
     <h1 class = "headers">Faculty Course Information</h1>
     <hr>
     <div style="text-align:center">
@@ -30,7 +30,7 @@ if(!isset($_SESSION['userID'])){
         <a href="./a_courseGrades.php" class = 'sub'>Course Grades</a>
         <a href="./a_courseRegistration.php" class = 'sub'>Course Registration</a>
         <a href="./a_majorRequirements.php" class = 'sub'>Major Requirements</a>
-        <a href="./a_facultyCourse.php"  style = "color: red" class = 'sub'>Faculty Course Information</a>
+        <!-- <a href="./a_facultyCourse.php"  style = "color: red" class = 'sub'>Faculty Course Information</a> -->
     </div>
     </hr>
     <hr>

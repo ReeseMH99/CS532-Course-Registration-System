@@ -24,6 +24,7 @@ if(!isset($_SESSION['userID'])){
 <body>
     <!--Elements visible to users go here-->
 
+    <h3 class = "studentName">Teacher: <?php echo $_SESSION['firstName'];?> </h3>
     <h1 class = "headers">Course Grades</h1>
     <hr>
     <div style="text-align:center">
@@ -41,6 +42,7 @@ if(!isset($_SESSION['userID'])){
         $gradeUpdate = $_POST['option-selected'];
         $user_ID = $_POST['user_id'];
         $sched_ID = $_POST['sched_id'];
+
         
         $select = "UPDATE studentschedule SET grade='$gradeUpdate' WHERE studentID='$user_ID' AND scheduleID='$sched_ID'";
         

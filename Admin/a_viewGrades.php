@@ -23,22 +23,22 @@ $firstName = $row[0];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Teacher: Course Grades</title>
-        <link rel="stylesheet" href="./styleTeacher.css">
+        <title>Admin: Course Grades</title>
+        <link rel="stylesheet" href="./styleAdmin.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName">Teacher: <?php echo $_SESSION['firstName'];?> </h3>
+    <h3 class = "studentName">Admin: <?php echo $_SESSION['firstName'];?> </h3>
     <h1 class = "headers">Course Grades for: <?php echo $firstName; ?></h1>
     <hr>
     <div style="text-align:center">
-        <a href="../teacherHome.php" class = 'sub'>Home</a>
-        <a href="./t_studentRecord.php" class = 'sub'>Student Record</a>
-        <a href="./t_courseGrades.php" style = "color: red" class = 'sub'>Course Grades</a>
-        <!-- <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
-        <!-- <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->
-        <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
+        <a href="../adminHome.php" class = 'sub'>Home</a>
+        <a href="./a_studentRecord.php" class = 'sub'>Student Record</a>
+        <a href="./a_courseGrades.php" style = "color: red" class = 'sub'>Course Grades</a>
+        <a href="./a_courseRegistration.php" class = 'sub'>Course Registration</a>
+        <a href="./a_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <!-- <a href="./a_facultyCourse.php" class = 'sub'>Faculty Course Information</a> -->
     </div>
     </hr>
     <hr>
@@ -183,7 +183,7 @@ $firstName = $row[0];
                         $optionsFormat = substr_replace($allOptionsStr, ' selected', $gradePos+4, 0);
                     }
                     echo "<th>" .
-                            '<form action="t_updateGrade.php" method="post" id="gradesform">
+                            '<form action="a_updateGrade.php" method="post" id="gradesform">
                                 <select name="option-selected">' . 
                                     $optionsFormat .
                                 '</select>
@@ -203,7 +203,7 @@ $firstName = $row[0];
             ?>
     </div>
 
-<form action="./t_courseGrades.php" method="post">
+<form action="./a_courseGrades.php" method="post">
     <button style = "margin-top: 15px"type="submit">Back</button>
 </form>
 

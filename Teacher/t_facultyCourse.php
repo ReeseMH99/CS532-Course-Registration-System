@@ -22,7 +22,7 @@ if(!isset($_SESSION['userID'])){
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName">Teacher</h3>
+    <h3 class = "studentName">Teacher: <?php echo $_SESSION['firstName'];?></h3>
     <h1 class = "headers">Faculty Course Information</h1>
     <hr>
     <div style="text-align:center">
@@ -36,7 +36,6 @@ if(!isset($_SESSION['userID'])){
     </hr>
     <hr>
     
-    <h2 class = "headers">Faculty and Course Information</h2>
     <h4 class = "headers">Query by Faculty, Course, and Semester</h4>
 
 
@@ -51,7 +50,7 @@ if(!isset($_SESSION['userID'])){
                     INNER JOIN Users U on T.teacherID = U.userID";
         $result = mysqli_query($connection, $select);
         echo "<form action='t_facultyCourse.php' method='post'>
-                    <label for = 'facultySelect'> Search Teacher:</label>
+                    <label for = 'facultySelect'> Search Instructor:</label>
                     <input type = 'text' name = 'facultySelect' id = 'facultySelect' list = 'facultyList'>
                     <datalist id = 'facultyList'>
                     <option value = 'All Faculty'>All Faculty</option>";
@@ -389,14 +388,6 @@ if(!isset($_SESSION['userID'])){
 
         ?>
     </div>
-
-
-
-
-    
-
-
-
     
     <form action="../logout.php" method="post">
         <button class = "logout" type="submit">Logout</button>

@@ -18,7 +18,7 @@ if(!isset($_SESSION['userID'])){
         <link rel="stylesheet" href="./Teacher/styleTeacher.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
-<body>
+<body >
     <!--Elements visible to users go here-->
     <h1 class = "studentName">Teacher Home</h1>
     <hr>

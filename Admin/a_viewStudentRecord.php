@@ -19,22 +19,22 @@ if(!isset($_SESSION['userID'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student: Student Record</title>
-    <link rel="stylesheet" href="./styleTeacher.css">
+    <title>Admin: Student Record</title>
+    <link rel="stylesheet" href="./styleAdmin.css">
     <!--Additional elements for browsers and robots go here goes here-->
 </head> 
 <body>
     <!--Elements visible to users go here-->
-    <h3 class = "studentName">Teacher: <?php echo $_SESSION['firstName'];?></h3>
+    <h3 class = "studentName">Admin: <?php echo $_SESSION['firstName'];?></h3>
     <h1 class = "headers">Student Record</h1>
     <hr>
     <div style="text-align:center">
-        <a href="../teacherHome.php" class = 'sub'>Home</a>
-        <a href="./t_studentRecord.php"  style = "color: red" class = 'sub'>Student Record</a>
-        <a href="./t_courseGrades.php" class = 'sub'>Course Grades</a>
-        <!-- <a href="./t_courseRegistration.php" class = 'sub'>Course Registration</a> -->
-        <!-- <a href="./t_majorRequirements.php" class = 'sub'>Major Requirements</a> -->
-        <a href="./t_facultyCourse.php" class = 'sub'>Faculty Course Information</a>
+        <a href="../adminHome.php" class = 'sub'>Home</a>
+        <a href="./a_studentRecord.php"  style = "color: red" class = 'sub'>Student Record</a>
+        <a href="./a_courseGrades.php" class = 'sub'>Course Grades</a>
+        <a href="./a_courseRegistration.php" class = 'sub'>Course Registration</a>
+        <a href="./a_majorRequirements.php" class = 'sub'>Major Requirements</a>
+        <!-- <a href="./a_facultyCourse.php" class = 'sub'>Faculty Course Information</a> -->
     </div>
     </hr>
     <hr>
@@ -150,7 +150,7 @@ if(!isset($_SESSION['userID'])){
         ?>
     </div>
 
-    <form action="./t_studentRecord.php" method="post">
+    <form action="./a_studentRecord.php" method="post">
     <button  style="margin-top: 15px"  type="submit">Back</button>
     </form>
 
